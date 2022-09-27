@@ -24,13 +24,15 @@ class ViewController: UIViewController {
         
         pageControl.addTarget(self, action: #selector(pageControlDidChage(_:)), for: .valueChanged)
         
-        horizontalScrollView.backgroundColor = .red
-        view.addSubview(pageControl)
+        horizontalScrollView.backgroundColor = .white
         view.addSubview(horizontalScrollView)
+        view.addSubview(pageControl)
         horizontalScrollView.addSubview(verticalScrollView)
         verticalScrollView.addSubview(verticalContentView)
-        
+        verticalContentView.addSubview(stackView)
+        setupColors()
         setupViewsContsraints()
+        
     }
     
     @objc private func pageControlDidChage(_ sender: UIPageControl) {
@@ -60,9 +62,6 @@ class ViewController: UIViewController {
         ]
         
         for x in 0..<4 {
-            //            let page = UIView(frame: CGRect(x: CGFloat(x) * view.frame.size.width, y: 0,
-            //                                            width: view.frame.size.width, height: horizontalScrollView.frame.size.height))
-            //            page.backgroundColor = colors[x]
             verticalContentView.backgroundColor = colors[x]
             horizontalScrollView.addSubview(verticalScrollView)
             verticalScrollView.addSubview(verticalContentView)
@@ -72,7 +71,7 @@ class ViewController: UIViewController {
     
     private lazy var verticalScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        //        scrollView.backgroundColor = .black
+                scrollView.backgroundColor = .orange
         scrollView.frame = view.bounds
         scrollView.contentSize = scrollViewContentSize
         return scrollView
@@ -80,7 +79,7 @@ class ViewController: UIViewController {
     
     private lazy var verticalContentView: UIView = {
         let contentView = UIView()
-        //        contentView.backgroundColor = .black
+                contentView.backgroundColor = .black
         contentView.frame.size = scrollViewContentSize
         return contentView
     }()
@@ -100,12 +99,14 @@ class ViewController: UIViewController {
     
 }
 
+//MARK: - UIScrollViewDelegate
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }
 }
 
+//MARK: - setupViewsContsraints
 extension ViewController {
     private func setupViewsContsraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,6 +130,7 @@ extension ViewController {
         for index in 0..<10 {
             let view = UIView()
             view.backgroundColor = colors[index % colors.count]
+            stackView.addArrangedSubview(view)
         }
         
         
