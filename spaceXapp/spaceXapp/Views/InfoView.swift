@@ -76,7 +76,7 @@ class InfoView: UIView {
         addSubview(mainInfoView)
         mainInfoView.addSubview(titleLabel)
         mainInfoView.addSubview(settingsButton)
-        collectionView.register(InfoViewCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
+        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
         mainInfoView.addSubview(collectionView)
         mainInfoView.addSubview(basicInfoView)
         mainInfoView.addSubview(stageView)
@@ -135,7 +135,7 @@ extension InfoView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? InfoViewCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? CardCollectionViewCell else {
             return UICollectionViewCell()
         }
         return cell

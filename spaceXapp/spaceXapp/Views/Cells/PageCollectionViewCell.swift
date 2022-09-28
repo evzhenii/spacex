@@ -122,7 +122,7 @@ extension PageCollectionViewCell {
             scrollView.leadingAnchor.constraint(equalTo: screenView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: screenView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
-
+            
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             scrollContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             
@@ -133,13 +133,13 @@ extension PageCollectionViewCell {
             backgroundImage.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -100),
             backgroundImage.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-
+            
             infoView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 350),
             infoView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             infoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             
         ])
-
+        
         
     }
     

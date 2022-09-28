@@ -23,7 +23,7 @@ class StageView: UIView {
         return stackView
     }()
     
-
+    
     let stages = ["FIRST STAGE", "SECOND STAGE"]
     let descriptions = ["Number of engines", "Fuel capacity", "Combustion time"]
     let units = ["", "ton", "sec"]
