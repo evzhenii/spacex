@@ -14,12 +14,13 @@
 		5921FEC428E42B3900043DF0 /* BasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FEC328E42B3900043DF0 /* BasicInfoView.swift */; };
 		5921FEC628E4387300043DF0 /* BasicInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FEC528E4387300043DF0 /* BasicInfoCollectionViewCell.swift */; };
 		5921FECB28E4702100043DF0 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FECA28E4702100043DF0 /* StageView.swift */; };
-		5921FECD28E4B64C00043DF0 /* RocketInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FECC28E4B64C00043DF0 /* RocketInfo.swift */; };
+		5921FECD28E4B64C00043DF0 /* RocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FECC28E4B64C00043DF0 /* RocketManager.swift */; };
 		5921FED028E4CD2F00043DF0 /* RocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5921FECF28E4CD2F00043DF0 /* RocketData.swift */; };
 		597049C328E19C8500916586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597049C228E19C8500916586 /* AppDelegate.swift */; };
 		597049C528E19C8500916586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597049C428E19C8500916586 /* SceneDelegate.swift */; };
 		597049CC28E19C8700916586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597049CB28E19C8700916586 /* Assets.xcassets */; };
 		597049CF28E19C8700916586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 597049CD28E19C8700916586 /* LaunchScreen.storyboard */; };
+		5982ADE128E4DC1600F92BFF /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5982ADE028E4DC1600F92BFF /* RocketModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +31,7 @@
 		5921FEC328E42B3900043DF0 /* BasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoView.swift; sourceTree = "<group>"; };
 		5921FEC528E4387300043DF0 /* BasicInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5921FECA28E4702100043DF0 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
-		5921FECC28E4B64C00043DF0 /* RocketInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInfo.swift; sourceTree = "<group>"; };
+		5921FECC28E4B64C00043DF0 /* RocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketManager.swift; sourceTree = "<group>"; };
 		5921FECF28E4CD2F00043DF0 /* RocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketData.swift; sourceTree = "<group>"; };
 		597049BF28E19C8500916586 /* spaceXapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spaceXapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597049C228E19C8500916586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		597049CB28E19C8700916586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		597049CE28E19C8700916586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		597049D028E19C8700916586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5982ADE028E4DC1600F92BFF /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +85,9 @@
 		5921FECE28E4B65200043DF0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5921FECC28E4B64C00043DF0 /* RocketInfo.swift */,
+				5921FECC28E4B64C00043DF0 /* RocketManager.swift */,
 				5921FECF28E4CD2F00043DF0 /* RocketData.swift */,
+				5982ADE028E4DC1600F92BFF /* RocketModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,9 +199,10 @@
 				5921FED028E4CD2F00043DF0 /* RocketData.swift in Sources */,
 				597049C328E19C8500916586 /* AppDelegate.swift in Sources */,
 				5921FECB28E4702100043DF0 /* StageView.swift in Sources */,
-				5921FECD28E4B64C00043DF0 /* RocketInfo.swift in Sources */,
+				5921FECD28E4B64C00043DF0 /* RocketManager.swift in Sources */,
 				5900F43628E1E72900F6DB59 /* SwipingCollectionViewController.swift in Sources */,
 				597049C528E19C8500916586 /* SceneDelegate.swift in Sources */,
+				5982ADE128E4DC1600F92BFF /* RocketModel.swift in Sources */,
 				591CC30728E4139E0063AA20 /* CardCollectionViewCell.swift in Sources */,
 				5921FEC428E42B3900043DF0 /* BasicInfoView.swift in Sources */,
 			);
