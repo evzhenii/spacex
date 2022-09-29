@@ -16,7 +16,7 @@ struct RocketManager {
     func load() {
         let stringUrl = "https://api.spacexdata.com/v4/rockets"
         
-        var delegate = RocketManagerDelegate?
+//        var delegate = RocketManagerDelegate?
         if let url = URL(string: stringUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -27,7 +27,8 @@ struct RocketManager {
                 
                 if let safeData = data {
                     if let rocket = self.parseJSON(rocketData: safeData) {
-                        delegate?.didUpdateRocket(rocket: rocket)
+                        print(rocket[0].mass.kg)
+//                        delegate?.didUpdateRocket(rocket: rocket)
                     }
                 }
             }
@@ -39,11 +40,22 @@ struct RocketManager {
         let decoder = JSONDecoder()
         
         do {
+            var array: [RocketModel] = []
             let decodedData = try decoder.decode([RocketData].self, from: rocketData)
-            print(decodedData[0])
-            
-            let rocket = RocketModel(name: <#T##String#>, cost_per_launch: <#T##Int#>, first_flight: <#T##String#>, country: <#T##String#>, height: <#T##Height#>, diameter: <#T##Diameter#>, mass: <#T##Mass#>, payload_weights: <#T##Payload_weights#>, flickr_images: <#T##[URL]#>, first_stage: <#T##First_stage#>, second_stage: <#T##Second_stage#>)
-            return decodedData
+            for i in 0..<4 {
+                array.append(RocketModel(name: decodedData[i].name,
+                                         flickr_images: decodedData[i].flickr_images,
+                                         cost_per_launch: decodedData[i].cost_per_launch,
+                                         first_flight: decodedData[i].first_flight,
+                                         country: decodedData[i].country,
+                                         height: decodedData[i].height,
+                                         diameter: decodedData[i].diameter,
+                                         mass: decodedData[i].mass,
+                                         payload_weights: decodedData[i].payload_weights[0],
+                                         first_stage: decodedData[i].first_stage,
+                                         second_stage: decodedData[i].second_stage))
+            }
+            return array
             
         } catch {
             print("parseJSON")
@@ -52,3 +64,32 @@ struct RocketManager {
         }
     }
 }
+
+
+//private func parseJSON(rocketData: Data) -> [RocketModel]? {
+//    let decoder = JSONDecoder()
+//    
+//    do {
+//        var array: [RocketModel] = []
+//        let decodedData = try decoder.decode([RocketData].self, from: rocketData)
+//        for i in 0..<4 {
+//            array.append(RocketModel(name: decodedData[i].name,
+//                                     flickr_images: decodedData[i].flickr_images,
+//                                     cost_per_launch: decodedData[i].cost_per_launch,
+//                                     first_flight: decodedData[i].first_flight,
+//                                     country: decodedData[i].country,
+//                                     height: decodedData[i].height,
+//                                     diameter: decodedData[i].diameter,
+//                                     mass: decodedData[i].mass,
+//                                     payload_weights: decodedData[i].payload_weights[0],
+//                                     first_stage: decodedData[i].first_stage,
+//                                     second_stage: decodedData[i].second_stage))
+//        }
+//        return array
+//        
+//    } catch {
+//        print("parseJSON")
+//        print(error)
+//        return nil
+//    }
+//}

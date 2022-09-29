@@ -17,7 +17,7 @@ struct RocketData: Codable {
     let diameter: Diameter
     let mass: Mass
     let payload_weights: [Payload_weights]
-    let flickr_images: [URL]
+    let flickr_images: [String]
     let first_stage: First_stage
     let second_stage: Second_stage
 }

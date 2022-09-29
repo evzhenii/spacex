@@ -51,8 +51,8 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - RocketManagerDelegate
 
-SwipingCollectionViewController: RocketManagerDelegate {
-    func didUpdateRocket(rocket: RocketModel) {
-        print("Success")
-    }
-}
+//SwipingCollectionViewController: RocketManagerDelegate {
+//    func didUpdateRocket(rocket: RocketModel) {
+//        print("Success")
+//    }
+//}
