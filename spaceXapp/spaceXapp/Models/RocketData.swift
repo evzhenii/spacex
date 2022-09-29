@@ -19,7 +19,7 @@ struct RocketData: Codable {
     let payload_weights: [Payload_weights]
     let flickr_images: [URL]
     let first_stage: First_stage
-//    let second_stage: Second_stage
+    let second_stage: Second_stage
 }
 
 struct Height: Codable {
@@ -43,13 +43,13 @@ struct Payload_weights: Codable {
 }
 
 struct First_stage: Codable {
-    let engines: Double
+    let engines: Int
     let fuel_amount_tons: Double
-    let burn_time_sec: Int
+//    let burn_time_sec: Int
 }
 
 struct Second_stage: Codable {
     let engines: Int
     let fuel_amount_tons: Double
-    let burn_time_sec: Int
+//    let burn_time_sec: Int
 }

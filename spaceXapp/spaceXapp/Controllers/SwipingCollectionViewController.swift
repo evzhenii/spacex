@@ -16,6 +16,7 @@ class SwipingCollectionViewController: UICollectionViewController {
         self.collectionView!.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isPagingEnabled = true
         rocketManager.load()
+        
     }
     
     let rocketManager = RocketManager()
@@ -32,6 +33,9 @@ class SwipingCollectionViewController: UICollectionViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+
+    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -42,5 +46,13 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
+    }
+}
+
+//MARK: - RocketManagerDelegate
+
+SwipingCollectionViewController: RocketManagerDelegate {
+    func didUpdateRocket(rocket: RocketModel) {
+        print("Success")
     }
 }
