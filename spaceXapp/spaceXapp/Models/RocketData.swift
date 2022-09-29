@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct RocketInfo: Decodable {
+struct RocketData: Codable {
     let name: String
     let cost_per_launch: Int
     let first_flight: String
@@ -16,35 +16,40 @@ struct RocketInfo: Decodable {
     let height: Height
     let diameter: Diameter
     let mass: Mass
-    let payload_weights: Payload_weights
+    let payload_weights: [Payload_weights]
     let flickr_images: [URL]
     let first_stage: First_stage
     let second_stage: Second_stage
 }
 
-struct Height: Decodable {
+struct Height: Codable {
     let meters: Double
     let feet: Double
 }
-struct Diameter: Decodable {
+
+struct Diameter: Codable {
     let meters: Double
     let feet: Double
 }
-struct Mass: Decodable {
+
+struct Mass: Codable {
     let kg: Double
     let lb: Double
 }
-struct Payload_weights: Decodable {
+
+struct Payload_weights: Codable {
     let kg: Double
     let lb: Double
 }
-struct First_stage: Decodable {
-    let engines: Int
+
+struct First_stage: Codable {
+    let engines: Double
     let fuel_amount_tons: Double
-    let burn_time_sec: Double
+    let burn_time_sec: Int
 }
-struct Second_stage: Decodable {
+
+struct Second_stage: Codable {
     let engines: Int
     let fuel_amount_tons: Double
-    let burn_time_sec: Double
+    let burn_time_sec: Int
 }
