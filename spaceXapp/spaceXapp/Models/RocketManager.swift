@@ -9,26 +9,27 @@ import Foundation
 import UIKit
 
 protocol RocketManagerDelegate {
-        func didUpdateRocket(rocket: RocketModel)
+    func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel)
+    func didFailWithError(_ error: Error)
 }
 
 struct RocketManager {
+    var delegate: RocketManagerDelegate?
+    let stringUrl = "https://api.spacexdata.com/v4/rockets"
+    
+    
     func load() {
-        let stringUrl = "https://api.spacexdata.com/v4/rockets"
-        
-//        var delegate = RocketManagerDelegate?
         if let url = URL(string: stringUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil  {
-                    print(error?.localizedDescription ?? "URL session error, no description")
+                    self.delegate?.didFailWithError(error!)
                     return
                 }
                 
                 if let safeData = data {
-                    if let rocket = self.parseJSON(rocketData: safeData) {
-                        print(rocket[0].mass.kg)
-//                        delegate?.didUpdateRocket(rocket: rocket)
+                    if let rocket = self.parseJSON(safeData) {
+                        self.delegate?.didUpdateRocket(self, rocket: rocket)
                     }
                 }
             }
@@ -36,60 +37,17 @@ struct RocketManager {
         }
     }
     
-    private func parseJSON(rocketData: Data) -> [RocketModel]? {
+    private func parseJSON(_ rocketData: Data) -> RocketModel? {
         let decoder = JSONDecoder()
         
         do {
-            var array: [RocketModel] = []
             let decodedData = try decoder.decode([RocketData].self, from: rocketData)
-            for i in 0..<4 {
-                array.append(RocketModel(name: decodedData[i].name,
-                                         flickr_images: decodedData[i].flickr_images,
-                                         cost_per_launch: decodedData[i].cost_per_launch,
-                                         first_flight: decodedData[i].first_flight,
-                                         country: decodedData[i].country,
-                                         height: decodedData[i].height,
-                                         diameter: decodedData[i].diameter,
-                                         mass: decodedData[i].mass,
-                                         payload_weights: decodedData[i].payload_weights[0],
-                                         first_stage: decodedData[i].first_stage,
-                                         second_stage: decodedData[i].second_stage))
-            }
-            return array
-            
+            let model = RocketModel(index: decodedData)
+            return model
         } catch {
-            print("parseJSON")
-            print(error)
+            delegate?.didFailWithError(error)
             return nil
         }
     }
 }
 
-
-//private func parseJSON(rocketData: Data) -> [RocketModel]? {
-//    let decoder = JSONDecoder()
-//    
-//    do {
-//        var array: [RocketModel] = []
-//        let decodedData = try decoder.decode([RocketData].self, from: rocketData)
-//        for i in 0..<4 {
-//            array.append(RocketModel(name: decodedData[i].name,
-//                                     flickr_images: decodedData[i].flickr_images,
-//                                     cost_per_launch: decodedData[i].cost_per_launch,
-//                                     first_flight: decodedData[i].first_flight,
-//                                     country: decodedData[i].country,
-//                                     height: decodedData[i].height,
-//                                     diameter: decodedData[i].diameter,
-//                                     mass: decodedData[i].mass,
-//                                     payload_weights: decodedData[i].payload_weights[0],
-//                                     first_stage: decodedData[i].first_stage,
-//                                     second_stage: decodedData[i].second_stage))
-//        }
-//        return array
-//        
-//    } catch {
-//        print("parseJSON")
-//        print(error)
-//        return nil
-//    }
-//}

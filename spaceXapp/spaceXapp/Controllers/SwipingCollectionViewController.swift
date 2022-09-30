@@ -11,15 +11,15 @@ private let reuseIdentifier = "Cell"
 
 class SwipingCollectionViewController: UICollectionViewController {
     
+    var rocketManager = RocketManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isPagingEnabled = true
+        rocketManager.delegate = self
         rocketManager.load()
-        
     }
-    
-    let rocketManager = RocketManager()
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
@@ -51,8 +51,13 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - RocketManagerDelegate
 
-//SwipingCollectionViewController: RocketManagerDelegate {
-//    func didUpdateRocket(rocket: RocketModel) {
-//        print("Success")
-//    }
-//}
+extension SwipingCollectionViewController: RocketManagerDelegate {
+
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel) {
+        print(rocket.index[0].country)
+    }
+}

@@ -8,10 +8,34 @@
 import Foundation
 import UIKit
 
+//struct RocketData: Codable {
+//    var rocketArray: [Rocket]
+//}
+
 struct RocketData: Codable {
     let name: String
     let cost_per_launch: Int
     let first_flight: String
+    var image: UIImage? {
+        let randIndex = (Int.random(in: 0..<flickr_images.count))
+        let url = URL(string: flickr_images[randIndex])
+        var image: UIImage?
+        DispatchQueue.global().async {
+            guard let url = url else {
+                return
+            }
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    let parsed = UIImage(data: data)
+                    image = parsed
+                }
+            } catch {
+                print(error)
+            }
+        }
+        return image
+    }
     let country: String
     let height: Height
     let diameter: Diameter
