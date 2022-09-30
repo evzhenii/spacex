@@ -21,11 +21,13 @@ class SwipingCollectionViewController: UICollectionViewController {
         collectionView.isPagingEnabled = true
         rocketManager.delegate = self
         rocketManager.load()
+//        collectionView?.reloadData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
-            cell.setup(cells, index: indexPath.row)
+        cell.setup(cells, index: indexPath.row)
+//        collectionView.reloadData()
         return cell
     }
     
@@ -60,6 +62,7 @@ extension SwipingCollectionViewController: RocketManagerDelegate {
     
     func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel) {
         cells = rocket
+        print("didUpdateRocket from Swiping collection view")
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }

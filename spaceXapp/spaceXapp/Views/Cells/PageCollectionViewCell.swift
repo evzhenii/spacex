@@ -154,16 +154,18 @@ extension PageCollectionViewCell {
             infoView.titleLabel.text = name
         }
         if let date = rocket.index?[index].first_flight {
-            infoView.basicInfoView.values.append(date)
-        }
-        if let country = rocket.index?[index].country {
-            infoView.basicInfoView.values.append(country)
-        }
-        if let cost = rocket.index?[index].cost_per_launch {
-            infoView.basicInfoView.values.append(String(format: "%.2f", cost))
+//            print("DDAATTEE IS : \(date)")
+            infoView.basicInfoView.setup(data: date)
+//            print(infoView.basicInfoView.values[0])
         }
         
-        
+//        if let country = rocket.index?[index].country {
+//            infoView.basicInfoView.values.append(country)
+//        }
+//        if let cost = rocket.index?[index].cost_per_launch {
+//            infoView.basicInfoView.values.append(String(format: "$%.2 mil", cost))
+//        }
+//        reloadData()
     }
     
     
