@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 struct RocketModel {
-    var index: [RocketData]?
+    var rocketArray: [RocketData]?
 }

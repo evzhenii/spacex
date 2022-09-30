@@ -16,22 +16,38 @@ struct RocketData: Codable {
     let name: String
     let cost_per_launch: Int
     let first_flight: String
+    //    var image: UIImage? {
+    //        let randIndex = (Int.random(in: 0..<flickr_images.count))
+    //        let url = URL(string: flickr_images[randIndex])
+    //        var image: UIImage?
+    //        DispatchQueue.global().async {
+    //            guard let url = url else {
+    //                return
+    //            }
+    //            do {
+    //                let data = try Data(contentsOf: url)
+    //                DispatchQueue.main.async {
+    //                    let parsed = UIImage(data: data)
+    //                    image = parsed
+    //                }
+    //            } catch {
+    //                print(error)
+    //            }
+    //        }
+    //        return image
+    //    }
+    
     var image: UIImage? {
         let randIndex = (Int.random(in: 0..<flickr_images.count))
-        let url = URL(string: flickr_images[randIndex])
         var image: UIImage?
+        guard let url = URL(string: flickr_images[randIndex]) else { return nil }
         DispatchQueue.global().async {
-            guard let url = url else {
-                return
-            }
-            do {
-                let data = try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    let parsed = UIImage(data: data)
-                    image = parsed
+            if let data = try? Data(contentsOf: url) {
+                if let parsed = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        image = parsed
+                    }
                 }
-            } catch {
-                print(error)
             }
         }
         return image
@@ -69,11 +85,11 @@ struct Payload_weights: Codable {
 struct First_stage: Codable {
     let engines: Int
     let fuel_amount_tons: Double
-//    let burn_time_sec: Int
+    //    let burn_time_sec: Int
 }
 
 struct Second_stage: Codable {
     let engines: Int
     let fuel_amount_tons: Double
-//    let burn_time_sec: Int
+    //    let burn_time_sec: Int
 }

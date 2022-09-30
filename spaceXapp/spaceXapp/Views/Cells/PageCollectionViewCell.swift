@@ -44,9 +44,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     private lazy var scrollContentView: UIView = {
         let contentView = UIView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .orange
         contentView.frame.size = contentSize
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
     
@@ -67,7 +66,7 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     private let backgroundImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "BackgroundPic")
+//        image.image = UIImage(named: "\()")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -130,15 +129,18 @@ extension PageCollectionViewCell {
 extension PageCollectionViewCell {
     
     func setup(_ rocket: RocketModel, index: Int) {
-        //        backgroundImage.image = rocket.index?[index].image
+        DispatchQueue.main.async { [weak self] in
+            self?.backgroundImage.image = rocket.rocketArray?[index].image
+            self?.backgroundImage.setNeedsDisplay()
+        }
         //        infoView.basicInfoView.values
         //        StageView.unit
-        if let name = rocket.index?[index].name {
+        if let name = rocket.rocketArray?[index].name {
             infoView.titleLabel.text = name
         }
-        if let date = rocket.index?[index].first_flight {
+        if let date = rocket.rocketArray?[index].first_flight {
 //            print("DDAATTEE IS : \(date)")
-            infoView.basicInfoView.setup(data: date)
+            infoView.basicInfoView.values[0] = date
 //            print(infoView.basicInfoView.values[0])
         }
         
@@ -149,11 +151,5 @@ extension PageCollectionViewCell {
 //            infoView.basicInfoView.values.append(String(format: "$%.2 mil", cost))
 //        }
 //        reloadData()
-    }
-    
-    
-    
-    func updateBGImage (_ newImage: UIImage) {
-        backgroundImage.image = newImage
     }
 }

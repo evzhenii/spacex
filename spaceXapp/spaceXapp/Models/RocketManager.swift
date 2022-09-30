@@ -39,10 +39,9 @@ struct RocketManager {
     
     private func parseJSON(_ rocketData: Data) -> RocketModel? {
         let decoder = JSONDecoder()
-        
         do {
             let decodedData = try decoder.decode([RocketData].self, from: rocketData)
-            let model = RocketModel(index: decodedData)
+            let model = RocketModel(rocketArray: decodedData)
             return model
         } catch {
             delegate?.didFailWithError(error)

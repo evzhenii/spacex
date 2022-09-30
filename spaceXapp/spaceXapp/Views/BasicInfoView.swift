@@ -17,7 +17,6 @@ class BasicInfoView: UIView {
     
     let descriptions = ["First launch", "Country", "Launch cost"]
     var values = ["7th of February, 2008", "USA", "$90 mln"]
-//    var values = ["", "", ""]
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -76,7 +75,6 @@ extension BasicInfoView {
         label.text = txt
         label.font = label.font.withSize(16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }
     

@@ -62,7 +62,7 @@ extension SwipingCollectionViewController: RocketManagerDelegate {
     
     func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel) {
         cells = rocket
-        print("didUpdateRocket from Swiping collection view")
+//        print("didUpdateRocket from Swiping collection view")
         DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
