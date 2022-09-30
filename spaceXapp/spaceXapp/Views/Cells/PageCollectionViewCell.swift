@@ -132,15 +132,11 @@ extension PageCollectionViewCell {
             self?.backgroundImage.image = rocket.rocketArray?[index].image
             self?.backgroundImage.setNeedsDisplay()
         }
-        //        infoView.basicInfoView.values
-        //        StageView.unit
         if let name = rocket.rocketArray?[index].name {
             infoView.titleLabel.text = name
         }
         if let date = rocket.rocketArray?[index].first_flight {
-//            print("DDAATTEE IS : \(date)")
             infoView.basicInfoView.values[0] = date
-//            print(infoView.basicInfoView.values[0])
         }
         
 //        if let country = rocket.index?[index].country {
