@@ -16,7 +16,8 @@ class BasicInfoView: UIView {
     }
     
     let descriptions = ["First launch", "Country", "Launch cost"]
-    let values = ["7th of February, 2008", "USA", "$90 mln"]
+//    var values = ["7th of February, 2008", "USA", "$90 mln"]
+    var values = ["", "", ""]
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,7 +32,7 @@ class BasicInfoView: UIView {
         for i in 0..<3 {
             let view = UIView()
             let description = descriptionSetup(txt: descriptions[i])
-            let value = valueSetup(txt: values[i])
+            let value = valueSetup()
             view.addSubview(description)
             view.addSubview(value)
             stackView.addArrangedSubview(view)
@@ -79,10 +80,9 @@ extension BasicInfoView {
         return label
     }
     
-    private func valueSetup(txt: String) -> UILabel {
+    private func valueSetup() -> UILabel {
         let label = UILabel()
         label.textColor = .white
-        label.text = txt
         label.font = label.font.withSize(16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

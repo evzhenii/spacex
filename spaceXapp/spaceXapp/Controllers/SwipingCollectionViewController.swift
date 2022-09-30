@@ -13,6 +13,8 @@ class SwipingCollectionViewController: UICollectionViewController {
     
     var rocketManager = RocketManager()
     
+    var cells = RocketModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -22,7 +24,8 @@ class SwipingCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
+            cell.setup(cells, index: indexPath.row)
         return cell
     }
     
@@ -34,12 +37,11 @@ class SwipingCollectionViewController: UICollectionViewController {
         return 0
     }
     
-
-    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -50,14 +52,17 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: - RocketManagerDelegate
-
 extension SwipingCollectionViewController: RocketManagerDelegate {
-
+    
     func didFailWithError(_ error: Error) {
         print(error)
     }
     
     func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel) {
-        print(rocket.index[0].country)
+        cells = rocket
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
     }
 }
+

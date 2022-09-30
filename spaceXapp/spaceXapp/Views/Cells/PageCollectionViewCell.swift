@@ -106,6 +106,7 @@ extension PageCollectionViewCell {
         stackView.addSubview(backgroundImage)
         stackView.addSubview(infoView)
     }
+    
     private func setupLayout() {
         NSLayoutConstraint.activate([
             screenView.topAnchor.constraint(equalTo: topAnchor),
@@ -136,12 +137,38 @@ extension PageCollectionViewCell {
             
             infoView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 350),
             infoView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            infoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            
+            infoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
+    }
+}
+
+
+//MARK: - Update UI functions
+extension PageCollectionViewCell {
+    
+    func setup(_ rocket: RocketModel, index: Int) {
+        //        backgroundImage.image = rocket.index?[index].image
+        //        infoView.basicInfoView.values
+        //        StageView.unit
+        if let name = rocket.index?[index].name {
+            infoView.titleLabel.text = name
+        }
+        if let date = rocket.index?[index].first_flight {
+            infoView.basicInfoView.values.append(date)
+        }
+        if let country = rocket.index?[index].country {
+            infoView.basicInfoView.values.append(country)
+        }
+        if let cost = rocket.index?[index].cost_per_launch {
+            infoView.basicInfoView.values.append(String(format: "%.2f", cost))
+        }
         
         
     }
     
+    
+    
+    func updateBGImage (_ newImage: UIImage) {
+        backgroundImage.image = newImage
+    }
 }
-
