@@ -64,7 +64,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         CGSize(width: frame.width, height: frame.height + 400)
     }
     
-    private let backgroundImage: UIImageView = {
+    let backgroundImage: UIImageView = {
         let image = UIImageView()
 //        image.image = UIImage(named: "\()")
         image.translatesAutoresizingMaskIntoConstraints = false

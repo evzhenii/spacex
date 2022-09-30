@@ -41,13 +41,9 @@ struct RocketData: Codable {
         let randIndex = (Int.random(in: 0..<flickr_images.count))
         var image: UIImage?
         guard let url = URL(string: flickr_images[randIndex]) else { return nil }
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
-                if let parsed = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        image = parsed
-                    }
-                }
+        if let data = try? Data(contentsOf: url) {
+            if let parsed = UIImage(data: data) {
+                image = parsed
             }
         }
         return image

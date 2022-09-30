@@ -27,6 +27,7 @@ class SwipingCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
         cell.setup(cells, index: indexPath.row)
+        cell.backgroundImage.image = cells.rocketArray?[indexPath.row].image
 //        collectionView.reloadData()
         return cell
     }
