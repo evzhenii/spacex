@@ -66,7 +66,6 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     let backgroundImage: UIImageView = {
         let image = UIImageView()
-//        image.image = UIImage(named: "\()")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
