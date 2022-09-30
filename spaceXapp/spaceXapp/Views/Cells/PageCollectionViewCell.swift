@@ -72,23 +72,6 @@ class PageCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    private let previousButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Prev", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Next", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
