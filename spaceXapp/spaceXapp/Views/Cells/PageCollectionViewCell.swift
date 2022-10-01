@@ -58,7 +58,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    let infoView = InfoView()
+    let infoView = MainInfoView()
     
     private var contentSize: CGSize {
         CGSize(width: frame.width, height: frame.height + 400)

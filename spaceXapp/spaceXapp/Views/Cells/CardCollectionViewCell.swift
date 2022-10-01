@@ -17,9 +17,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    
-//    var values = ["", "", "", ""]
-//    var descriptions = ["", "", "",]
     
     let valueLabel: UILabel = {
         let label = UILabel()
@@ -45,7 +42,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
         layer.cornerRadius = 32
         addSubview(valueLabel)
-        addSubview(descriptionLabel)
+//        addSubview(descriptionLabel)
     }
     
     private func setupLayout() {
@@ -55,8 +52,8 @@ class CardCollectionViewCell: UICollectionViewCell {
             valueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 28),
             
-            descriptionLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
-            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            descriptionLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
+//            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }

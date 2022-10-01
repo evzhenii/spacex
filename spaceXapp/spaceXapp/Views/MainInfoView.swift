@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InfoView: UIView {
+class MainInfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,13 +43,13 @@ class InfoView: UIView {
         return button
     }()
     
-    let collectionView: UICollectionView = {
+    let cardCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.minimumInteritemSpacing = 0
+//        collectionViewLayout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewLayout.scrollDirection = .horizontal
         collectionView.backgroundColor = .black
-        collectionView.contentInsetAdjustmentBehavior = .never
+//        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -71,16 +71,16 @@ class InfoView: UIView {
 //    var rocket = RocketData(from: <#Decoder#>)
     
     private func setDelegates() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        cardCollectionView.delegate = self
+        cardCollectionView.dataSource = self
     }
     
     private func setupViews() {
         addSubview(mainInfoView)
         mainInfoView.addSubview(titleLabel)
         mainInfoView.addSubview(settingsButton)
-        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
-        mainInfoView.addSubview(collectionView)
+        cardCollectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
+        mainInfoView.addSubview(cardCollectionView)
         mainInfoView.addSubview(basicInfoView)
         mainInfoView.addSubview(stageView1)
         mainInfoView.addSubview(stageView2)
@@ -104,23 +104,23 @@ class InfoView: UIView {
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
             settingsButton.widthAnchor.constraint(equalToConstant: 32),
             
-            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-            collectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: 50),
-            collectionView.heightAnchor.constraint(equalToConstant: 100),
+            cardCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
+            cardCollectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
+            cardCollectionView.heightAnchor.constraint(equalToConstant: 100),
             
-            basicInfoView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 40),
-            basicInfoView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            basicInfoView.topAnchor.constraint(equalTo: cardCollectionView.bottomAnchor, constant: 40),
+            basicInfoView.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
             basicInfoView.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             basicInfoView.heightAnchor.constraint(equalToConstant: 150),
             
             stageView1.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
-            stageView1.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            stageView1.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
             stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             stageView1.heightAnchor.constraint(equalToConstant: 200),
             
             stageView2.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
-            stageView2.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            stageView2.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
             stageView2.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             stageView2.heightAnchor.constraint(equalToConstant: 200),
 
@@ -137,7 +137,7 @@ class InfoView: UIView {
 
 
 //MARK: - UICollectionViewDataSource
-extension InfoView: UICollectionViewDataSource {
+extension MainInfoView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4
     }
@@ -153,15 +153,18 @@ extension InfoView: UICollectionViewDataSource {
 }
 
 //MARK: - UICollectionViewDelegate
-extension InfoView: UICollectionViewDelegate {
+extension MainInfoView: UICollectionViewDelegate {
     
 }
 
 
 //MARK: - UICollectionViewDelegateFlowLayout
-extension InfoView: UICollectionViewDelegateFlowLayout {
+extension MainInfoView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width / 4,
-               height: collectionView.frame.width / 4)
+//        CGSize(width: collectionView.frame.height * 2,
+//               height: collectionView.frame.height)
+        
+        CGSize(width: 300,
+               height: collectionView.frame.height)
     }
 }
