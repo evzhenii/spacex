@@ -16,8 +16,6 @@ class InfoView: UIView {
         setDelegates()
     }
     
-//    var cells = RocketModel()
-    
     private lazy var mainInfoView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -157,5 +155,9 @@ extension InfoView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width / 4,
                height: collectionView.frame.width / 4)
+    }
+    
+    func test() {
+        basicInfoView.firstLaunchView.date.text = "da"
     }
 }

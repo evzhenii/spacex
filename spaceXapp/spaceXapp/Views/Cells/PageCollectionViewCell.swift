@@ -135,7 +135,8 @@ extension PageCollectionViewCell {
         }
         infoView.titleLabel.text = rocket.name
         
-        infoView.basicInfoView.values[0] = rocket.first_flight
+//        infoView.basicInfoView.values[0] = rocket.first_flight
+        infoView.basicInfoView.setup(rocket)
         
 //        infoView.cells = rocket
         

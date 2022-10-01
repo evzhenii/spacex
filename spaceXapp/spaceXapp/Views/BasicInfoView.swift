@@ -15,8 +15,8 @@ class BasicInfoView: UIView {
         setupLayout()
     }
     
-    let descriptions = ["First launch", "Country", "Launch cost"]
-    var values = ["7th of February, 2008", "USA", "$90 mln"]
+//    let descriptions = ["First launch", "Country", "Launch cost"]
+//    var values = ["7th of February, 2008", "USA", "$90 mln"]
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -26,30 +26,22 @@ class BasicInfoView: UIView {
         return stackView
     }()
     
-//    var firstLaunch: UIView = {
-//        let view = UIView()
-//        let description = descriptionSetup(txt: "First Launch")
-//        var value = valueSetup()
-//
-//
-//    }()
+    lazy var firstLaunchView: UIView = {
+        let view = UIView()
+        var descriptionLabel = descriptionSetup()
+        var dateLabel = valueSetup()
+        view.addSubview(descriptionLabel)
+        view.addSubview(dateLabel)
+        NSLayoutConstraint.activate([
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        return view
+    }()
     
     private func setupViews() {
         addSubview(stackView)
-        for i in 0..<3 {
-            let view = UIView()
-            let description = descriptionSetup(txt: "da")
-            let value = valueSetup(txt: values[i])
-            view.addSubview(description)
-            view.addSubview(value)
-            stackView.addArrangedSubview(view)
-            NSLayoutConstraint.activate([
-                view.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-                view.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-                description.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                value.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ])
-        }
+        stackView.addArrangedSubview(firstLaunchView)
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +58,9 @@ extension BasicInfoView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            firstLaunchView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            firstLaunchView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
         
         for view in stackView.arrangedSubviews {
@@ -77,16 +72,15 @@ extension BasicInfoView {
         }
     }
     
-    func descriptionSetup(txt: String) -> UILabel {
+    func descriptionSetup() -> UILabel {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.8308513761, green: 0.8308513761, blue: 0.8308513761, alpha: 0.8470588235)
-        label.text = txt
         label.font = label.font.withSize(16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
-    private func valueSetup(txt: String) -> UILabel {
+    private func valueSetup() -> UILabel {
         let label = UILabel()
         label.textColor = .white
         label.font = label.font.withSize(16)
@@ -94,7 +88,23 @@ extension BasicInfoView {
         return label
     }
     
-    func setup(data: String) {
-        values[0] = data
+    func setup(_ rocket: RocketData) {
+        self.firstLaunchView.descriptionLabel = "lol"
+        
     }
 }
+
+//        for i in 0..<3 {
+//            let view = UIView()
+//            let description = descriptionSetup(txt: "da")
+//            let value = valueSetup(txt: values[i])
+//            view.addSubview(description)
+//            view.addSubview(value)
+//            stackView.addArrangedSubview(view)
+//            NSLayoutConstraint.activate([
+//                view.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+//                view.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+//                description.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//                value.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            ])
+//        }
