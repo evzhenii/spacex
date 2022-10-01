@@ -66,7 +66,8 @@ class InfoView: UIView {
     }()
     
     let basicInfoView = BasicInfoView()
-    let stageView = StageView()
+    let stageView1 = StageView()
+    let stageView2 = StageView()
     
     private func setDelegates() {
         collectionView.delegate = self
@@ -80,7 +81,7 @@ class InfoView: UIView {
         collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
         mainInfoView.addSubview(collectionView)
         mainInfoView.addSubview(basicInfoView)
-        mainInfoView.addSubview(stageView)
+        mainInfoView.addSubview(stageView1)
         mainInfoView.addSubview(showLaunches)
     }
     private func setupLayout() {
@@ -111,14 +112,14 @@ class InfoView: UIView {
             basicInfoView.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             basicInfoView.heightAnchor.constraint(equalToConstant: 150),
             
-            stageView.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
-            stageView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
-            stageView.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            stageView.heightAnchor.constraint(equalToConstant: 375),
+            stageView1.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
+            stageView1.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
+            stageView1.heightAnchor.constraint(equalToConstant: 375),
             
-            showLaunches.topAnchor.constraint(equalTo: stageView.bottomAnchor),
-            showLaunches.leadingAnchor.constraint(equalTo: stageView.leadingAnchor),
-            showLaunches.trailingAnchor.constraint(equalTo: stageView.trailingAnchor),
+            showLaunches.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
+            showLaunches.leadingAnchor.constraint(equalTo: stageView1.leadingAnchor),
+            showLaunches.trailingAnchor.constraint(equalTo: stageView1.trailingAnchor),
             showLaunches.heightAnchor.constraint(equalToConstant: 60)
         ])
     }

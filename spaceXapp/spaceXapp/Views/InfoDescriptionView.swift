@@ -35,6 +35,7 @@ class InfoDescriptionView: UIView {
         addSubview(nameLabel)
         addSubview(valueLabel)
     }
+    
     private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -49,5 +50,4 @@ class InfoDescriptionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

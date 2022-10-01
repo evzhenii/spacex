@@ -47,16 +47,7 @@ extension BasicInfoView {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            firstLaunchView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            firstLaunchView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            
-            countryView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            countryView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            
-            costView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            costView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
         for view in stackView.arrangedSubviews {
@@ -66,7 +57,6 @@ extension BasicInfoView {
             ])
         }
     }
-    
 
     func setup(_ rocket: RocketData) {
         firstLaunchView.valueLabel.text = rocket.first_flight
@@ -74,7 +64,6 @@ extension BasicInfoView {
         countryView.valueLabel.text = rocket.country
         countryView.nameLabel.text = "Country"
         costView.valueLabel.text = String(rocket.cost_per_launch)
-        costView.nameLabel.text =  "First launch"
-        
+        costView.nameLabel.text =  "Launch cost"
     }
 }

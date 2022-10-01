@@ -131,21 +131,9 @@ extension PageCollectionViewCell {
     func setup(_ rocket: RocketData) {
         DispatchQueue.main.async { [weak self] in
             self?.backgroundImage.image = rocket.image
-//            self?.backgroundImage.setNeedsDisplay()
         }
         infoView.titleLabel.text = rocket.name
-        
-//        infoView.basicInfoView.values[0] = rocket.first_flight
         infoView.basicInfoView.setup(rocket)
-        
-//        infoView.cells = rocket
-        
-//        if let country = rocket.index?[index].country {
-//            infoView.basicInfoView.values.append(country)
-//        }
-//        if let cost = rocket.index?[index].cost_per_launch {
-//            infoView.basicInfoView.values.append(String(format: "$%.2 mil", cost))
-//        }
-//        reloadData()
+        infoView.stageView1.setup(rocket.first_stage)
     }
 }
