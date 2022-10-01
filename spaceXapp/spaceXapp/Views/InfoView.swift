@@ -16,6 +16,8 @@ class InfoView: UIView {
         setDelegates()
     }
     
+//    var cells = RocketModel()
+    
     private lazy var mainInfoView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -49,6 +51,7 @@ class InfoView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionViewLayout.scrollDirection = .horizontal
         collectionView.backgroundColor = .black
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -90,7 +93,6 @@ class InfoView: UIView {
             mainInfoView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainInfoView.trailingAnchor.constraint(equalTo: trailingAnchor),
             mainInfoView.heightAnchor.constraint(equalToConstant: 900),
-            
             
             titleLabel.topAnchor.constraint(equalTo: mainInfoView.topAnchor, constant: 48),
             titleLabel.leadingAnchor.constraint(equalTo: mainInfoView.leadingAnchor, constant: 32),
@@ -138,6 +140,7 @@ extension InfoView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? CardCollectionViewCell else {
             return UICollectionViewCell()
         }
+//        cell.valueLabel.text = String(cells.rocketArray?[indexPath.row].height.feet)
         return cell
     }
     

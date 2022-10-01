@@ -13,10 +13,11 @@ class SwipingCollectionViewController: UICollectionViewController {
     
     var rocketManager = RocketManager()
     
-    var cells = RocketModel()
+    var rockets = [RocketData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.contentInsetAdjustmentBehavior = .never
         self.collectionView!.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isPagingEnabled = true
         rocketManager.delegate = self
@@ -26,8 +27,8 @@ class SwipingCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
-        cell.setup(cells, index: indexPath.row)
-        cell.backgroundImage.image = cells.rocketArray?[indexPath.row].image
+        cell.setup(rockets[indexPath.item])
+        cell.backgroundImage.image = rockets[indexPath.row].image
 //        collectionView.reloadData()
         return cell
     }
@@ -50,23 +51,23 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return rockets.count
     }
 }
 
 //MARK: - RocketManagerDelegate
 extension SwipingCollectionViewController: RocketManagerDelegate {
+    func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData]) {
+        self.rockets = rockets
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+    }
+    
     
     func didFailWithError(_ error: Error) {
         print(error)
     }
     
-    func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel) {
-        cells = rocket
-//        print("didUpdateRocket from Swiping collection view")
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
-    }
 }
 

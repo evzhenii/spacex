@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol RocketManagerDelegate {
-    func didUpdateRocket(_ rocketManager: RocketManager, rocket: RocketModel)
+    func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData])
     func didFailWithError(_ error: Error)
 }
 
@@ -21,6 +21,7 @@ struct RocketManager {
     func load() {
         if let url = URL(string: stringUrl) {
             let session = URLSession(configuration: .default)
+            
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil  {
                     self.delegate?.didFailWithError(error!)
@@ -29,7 +30,7 @@ struct RocketManager {
                 
                 if let safeData = data {
                     if let rocket = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateRocket(self, rocket: rocket)
+                        self.delegate?.didUpdateRockets(self, rockets: rocket)
                     }
                 }
             }
@@ -37,12 +38,11 @@ struct RocketManager {
         }
     }
     
-    private func parseJSON(_ rocketData: Data) -> RocketModel? {
+    private func parseJSON(_ rocketData: Data) -> [RocketData]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode([RocketData].self, from: rocketData)
-            let model = RocketModel(rocketArray: decodedData)
-            return model
+            return decodedData
         } catch {
             delegate?.didFailWithError(error)
             return nil

@@ -8,35 +8,10 @@
 import Foundation
 import UIKit
 
-//struct RocketData: Codable {
-//    var rocketArray: [Rocket]
-//}
-
 struct RocketData: Codable {
     let name: String
     let cost_per_launch: Int
     let first_flight: String
-    //    var image: UIImage? {
-    //        let randIndex = (Int.random(in: 0..<flickr_images.count))
-    //        let url = URL(string: flickr_images[randIndex])
-    //        var image: UIImage?
-    //        DispatchQueue.global().async {
-    //            guard let url = url else {
-    //                return
-    //            }
-    //            do {
-    //                let data = try Data(contentsOf: url)
-    //                DispatchQueue.main.async {
-    //                    let parsed = UIImage(data: data)
-    //                    image = parsed
-    //                }
-    //            } catch {
-    //                print(error)
-    //            }
-    //        }
-    //        return image
-    //    }
-    
     var image: UIImage? {
         let randIndex = (Int.random(in: 0..<flickr_images.count))
         var image: UIImage?
@@ -59,33 +34,33 @@ struct RocketData: Codable {
 }
 
 struct Height: Codable {
-    let meters: Double
-    let feet: Double
+    let meters: Float
+    let feet: Float
 }
 
 struct Diameter: Codable {
-    let meters: Double
-    let feet: Double
+    let meters: Float
+    let feet: Float
 }
 
 struct Mass: Codable {
-    let kg: Double
-    let lb: Double
+    let kg: Float
+    let lb: Float
 }
 
 struct Payload_weights: Codable {
-    let kg: Double
-    let lb: Double
+    let kg: Float
+    let lb: Float
 }
 
 struct First_stage: Codable {
     let engines: Int
-    let fuel_amount_tons: Double
-    //    let burn_time_sec: Int
+    let fuel_amount_tons: Float
+    let burn_time_sec: Int?
 }
 
 struct Second_stage: Codable {
     let engines: Int
-    let fuel_amount_tons: Double
-    //    let burn_time_sec: Int
+    let fuel_amount_tons: Float
+    let burn_time_sec: Int?
 }

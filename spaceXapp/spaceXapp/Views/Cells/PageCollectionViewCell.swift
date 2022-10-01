@@ -66,6 +66,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     let backgroundImage: UIImageView = {
         let image = UIImageView()
+//        image.contentMode = .scaleAspectFill
+        // MARK: TODO: Play with content mode of background image in order to fit figma design
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -115,7 +117,6 @@ extension PageCollectionViewCell {
             backgroundImage.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -100),
             backgroundImage.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
-            
             infoView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 350),
             infoView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             infoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
@@ -127,17 +128,16 @@ extension PageCollectionViewCell {
 //MARK: - Update UI functions
 extension PageCollectionViewCell {
     
-    func setup(_ rocket: RocketModel, index: Int) {
+    func setup(_ rocket: RocketData) {
         DispatchQueue.main.async { [weak self] in
-            self?.backgroundImage.image = rocket.rocketArray?[index].image
-            self?.backgroundImage.setNeedsDisplay()
+            self?.backgroundImage.image = rocket.image
+//            self?.backgroundImage.setNeedsDisplay()
         }
-        if let name = rocket.rocketArray?[index].name {
-            infoView.titleLabel.text = name
-        }
-        if let date = rocket.rocketArray?[index].first_flight {
-            infoView.basicInfoView.values[0] = date
-        }
+        infoView.titleLabel.text = rocket.name
+        
+        infoView.basicInfoView.values[0] = rocket.first_flight
+        
+//        infoView.cells = rocket
         
 //        if let country = rocket.index?[index].country {
 //            infoView.basicInfoView.values.append(country)

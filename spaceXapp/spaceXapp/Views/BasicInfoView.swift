@@ -26,11 +26,19 @@ class BasicInfoView: UIView {
         return stackView
     }()
     
+//    var firstLaunch: UIView = {
+//        let view = UIView()
+//        let description = descriptionSetup(txt: "First Launch")
+//        var value = valueSetup()
+//
+//
+//    }()
+    
     private func setupViews() {
         addSubview(stackView)
         for i in 0..<3 {
             let view = UIView()
-            let description = descriptionSetup(txt: descriptions[i])
+            let description = descriptionSetup(txt: "da")
             let value = valueSetup(txt: values[i])
             view.addSubview(description)
             view.addSubview(value)
@@ -69,7 +77,7 @@ extension BasicInfoView {
         }
     }
     
-    private func descriptionSetup(txt: String) -> UILabel {
+    func descriptionSetup(txt: String) -> UILabel {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.8308513761, green: 0.8308513761, blue: 0.8308513761, alpha: 0.8470588235)
         label.text = txt
@@ -81,7 +89,6 @@ extension BasicInfoView {
     private func valueSetup(txt: String) -> UILabel {
         let label = UILabel()
         label.textColor = .white
-        label.text = txt
         label.font = label.font.withSize(16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
