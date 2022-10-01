@@ -68,6 +68,7 @@ class InfoView: UIView {
     let basicInfoView = BasicInfoView()
     let stageView1 = StageView()
     let stageView2 = StageView()
+//    var rocket = RocketData(from: <#Decoder#>)
     
     private func setDelegates() {
         collectionView.delegate = self
@@ -117,8 +118,6 @@ class InfoView: UIView {
             stageView1.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
             stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             stageView1.heightAnchor.constraint(equalToConstant: 200),
-//            stageView1.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-
             
             stageView2.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
             stageView2.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
@@ -147,6 +146,7 @@ extension InfoView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? CardCollectionViewCell else {
             return UICollectionViewCell()
         }
+//        cell.setup(rocket.indexPath.item)
         return cell
     }
     

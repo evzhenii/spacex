@@ -63,7 +63,7 @@ extension BasicInfoView {
         firstLaunchView.nameLabel.text = "First launch"
         countryView.valueLabel.text = rocket.country
         countryView.nameLabel.text = "Country"
-        costView.valueLabel.text = String(rocket.cost_per_launch)
+        costView.valueLabel.text = "$ \(String(rocket.cost_per_launch))"
         costView.nameLabel.text =  "Launch cost"
     }
 }

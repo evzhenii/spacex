@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				5900F43728E1EBBE00F6DB59 /* PageCollectionViewCell.swift */,
-				5921FEC528E4387300043DF0 /* BasicInfoCollectionViewCell.swift */,
 				591CC30628E4139E0063AA20 /* CardCollectionViewCell.swift */,
+				5921FEC528E4387300043DF0 /* BasicInfoCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

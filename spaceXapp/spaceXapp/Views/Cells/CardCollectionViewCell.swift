@@ -23,7 +23,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     let valueLabel: UILabel = {
         let label = UILabel()
-//        label.text = "229.6"
+        label.text = "229.6"
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = label.font.withSize(16)
@@ -33,7 +33,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Height, ft"
+        label.text = "Height, ft"
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5607843137, alpha: 1)
         label.font = label.font.withSize(14)
