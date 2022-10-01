@@ -135,5 +135,8 @@ extension PageCollectionViewCell {
         infoView.titleLabel.text = rocket.name
         infoView.basicInfoView.setup(rocket)
         infoView.stageView1.setup(rocket.first_stage)
+        infoView.stageView1.stageLabel.text = "FIRST STAGE"
+        infoView.stageView2.setup(rocket.second_stage)
+        infoView.stageView2.stageLabel.text = "SECOND STAGE"
     }
 }

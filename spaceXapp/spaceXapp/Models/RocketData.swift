@@ -58,9 +58,3 @@ struct Stage: Codable {
     let fuel_amount_tons: Float
     let burn_time_sec: Int?
 }
-
-//struct Second_stage: Codable {
-//    let engines: Int
-//    let fuel_amount_tons: Float
-//    let burn_time_sec: Int?
-//}

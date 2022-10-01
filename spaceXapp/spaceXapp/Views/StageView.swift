@@ -23,19 +23,35 @@ class StageView: UIView {
         return stackView
     }()
     
-    var engineNumberView = InfoDescriptionView()
-    var fuelCapacityView = InfoDescriptionView()
-    var combustionTimeView = InfoDescriptionView()
+    var stageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 0.9719485641, green: 0.9719484448, blue: 0.9719484448, alpha: 1)
+        label.font = label.font.withSize(16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var engineNumberView = StageDescriptionView()
+    var fuelCapacityView = StageDescriptionView()
+    var combustionTimeView = StageDescriptionView()
     
     private func setupViews() {
+        addSubview(stageLabel)
         addSubview(stackView)
+        stackView.addArrangedSubview(engineNumberView)
+        stackView.addArrangedSubview(fuelCapacityView)
+        stackView.addArrangedSubview(combustionTimeView)
     }
     
     private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
+            stageLabel.topAnchor.constraint(equalTo: topAnchor),
+            stageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: stageLabel.bottomAnchor, constant: 16),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
@@ -44,52 +60,28 @@ class StageView: UIView {
             view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 view.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-                view.heightAnchor.constraint(equalToConstant: 24),
             ])
         }
+    }
+    
+    func combustionViewActivate() -> UIView? {
+        return InfoDescriptionView()
     }
     
     func setup(_ rocket: Stage) {
         engineNumberView.nameLabel.text = "Number of engines"
         fuelCapacityView.nameLabel.text = "Fuel capacity"
-        combustionTimeView.nameLabel.text = "Combustion time"
+        fuelCapacityView.measurmentLabel.text = "ton"
         engineNumberView.valueLabel.text = String(rocket.engines)
         fuelCapacityView.valueLabel.text = String(rocket.fuel_amount_tons)
-//        combustionTimeView.valueLabel.text = String(rocket.burn_time_sec)
+        if let time = rocket.burn_time_sec {
+            combustionTimeView.valueLabel.text = String(time)
+            combustionTimeView.nameLabel.text = "Combustion time"
+            combustionTimeView.measurmentLabel.text = "sec"
+        }
     }
-    
-    
-//    let stages = ["FIRST STAGE", "SECOND STAGE"]
-//    let descriptions = ["Number of engines", "Fuel capacity", "Combustion time"]
-//    let units = ["", "ton", "sec"]
-//    let values = [
-//        ["27", "308.6", "593"],
-//        ["1", "243.3", "397"]
-//    ]
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-//MARK: - View generators
-extension StageView {
-    
-    private func titleSetup(txt: String) -> UILabel {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.9719485641, green: 0.9719484448, blue: 0.9719484448, alpha: 1)
-        label.text = txt
-        label.font = label.font.withSize(16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-    
-    private func unitSetup (txt: String) -> UILabel {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5607843137, alpha: 0.8470588235)
-        label.text = txt
-        label.font = label.font.withSize(16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }
 }

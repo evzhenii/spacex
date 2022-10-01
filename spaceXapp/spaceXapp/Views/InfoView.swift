@@ -82,6 +82,7 @@ class InfoView: UIView {
         mainInfoView.addSubview(collectionView)
         mainInfoView.addSubview(basicInfoView)
         mainInfoView.addSubview(stageView1)
+        mainInfoView.addSubview(stageView2)
         mainInfoView.addSubview(showLaunches)
     }
     private func setupLayout() {
@@ -115,11 +116,18 @@ class InfoView: UIView {
             stageView1.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
             stageView1.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
             stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            stageView1.heightAnchor.constraint(equalToConstant: 375),
+            stageView1.heightAnchor.constraint(equalToConstant: 200),
+//            stageView1.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
             
-            showLaunches.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
-            showLaunches.leadingAnchor.constraint(equalTo: stageView1.leadingAnchor),
-            showLaunches.trailingAnchor.constraint(equalTo: stageView1.trailingAnchor),
+            stageView2.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
+            stageView2.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            stageView2.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
+            stageView2.heightAnchor.constraint(equalToConstant: 200),
+
+            showLaunches.topAnchor.constraint(equalTo: stageView2.bottomAnchor),
+            showLaunches.leadingAnchor.constraint(equalTo: stageView2.leadingAnchor),
+            showLaunches.trailingAnchor.constraint(equalTo: stageView2.trailingAnchor),
             showLaunches.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -139,7 +147,6 @@ extension InfoView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? CardCollectionViewCell else {
             return UICollectionViewCell()
         }
-//        cell.valueLabel.text = String(cells.rocketArray?[indexPath.row].height.feet)
         return cell
     }
     
