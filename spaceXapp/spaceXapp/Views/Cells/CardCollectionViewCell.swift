@@ -42,7 +42,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
         layer.cornerRadius = 32
         addSubview(valueLabel)
-//        addSubview(descriptionLabel)
+        addSubview(descriptionLabel)
     }
     
     private func setupLayout() {
@@ -51,9 +51,10 @@ class CardCollectionViewCell: UICollectionViewCell {
             valueLabel.heightAnchor.constraint(equalToConstant: 24),
             valueLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 28),
+//            valueLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-//            descriptionLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
-//            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: valueLabel.bottomAnchor),
+            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }

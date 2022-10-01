@@ -106,7 +106,8 @@ class MainInfoView: UIView {
             
             cardCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
             cardCollectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
+            cardCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
+//            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
             cardCollectionView.heightAnchor.constraint(equalToConstant: 100),
             
             basicInfoView.topAnchor.constraint(equalTo: cardCollectionView.bottomAnchor, constant: 40),
@@ -164,7 +165,7 @@ extension MainInfoView: UICollectionViewDelegateFlowLayout {
 //        CGSize(width: collectionView.frame.height * 2,
 //               height: collectionView.frame.height)
         
-        CGSize(width: 300,
+        CGSize(width: collectionView.frame.height,
                height: collectionView.frame.height)
     }
 }
