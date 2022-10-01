@@ -156,8 +156,4 @@ extension InfoView: UICollectionViewDelegateFlowLayout {
         CGSize(width: collectionView.frame.width / 4,
                height: collectionView.frame.width / 4)
     }
-    
-    func test() {
-        basicInfoView.firstLaunchView.date.text = "da"
-    }
 }

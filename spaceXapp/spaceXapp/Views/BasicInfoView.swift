@@ -15,33 +15,23 @@ class BasicInfoView: UIView {
         setupLayout()
     }
     
-//    let descriptions = ["First launch", "Country", "Launch cost"]
-//    var values = ["7th of February, 2008", "USA", "$90 mln"]
-    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 40
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    lazy var firstLaunchView: UIView = {
-        let view = UIView()
-        var descriptionLabel = descriptionSetup()
-        var dateLabel = valueSetup()
-        view.addSubview(descriptionLabel)
-        view.addSubview(dateLabel)
-        NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-        return view
-    }()
+    var firstLaunchView = InfoDescriptionView()
+    var countryView = InfoDescriptionView()
+    var costView = InfoDescriptionView()
     
     private func setupViews() {
         addSubview(stackView)
         stackView.addArrangedSubview(firstLaunchView)
+        stackView.addArrangedSubview(countryView)
+        stackView.addArrangedSubview(costView)
     }
     
     required init?(coder: NSCoder) {
@@ -60,51 +50,31 @@ extension BasicInfoView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             firstLaunchView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            firstLaunchView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+            firstLaunchView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            
+            countryView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            countryView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            
+            costView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            costView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
         ])
         
         for view in stackView.arrangedSubviews {
             view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 view.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-                view.heightAnchor.constraint(equalToConstant: 24),
             ])
         }
     }
     
-    func descriptionSetup() -> UILabel {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.8308513761, green: 0.8308513761, blue: 0.8308513761, alpha: 0.8470588235)
-        label.font = label.font.withSize(16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-    
-    private func valueSetup() -> UILabel {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = label.font.withSize(16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }
-    
+
     func setup(_ rocket: RocketData) {
-        self.firstLaunchView.descriptionLabel = "lol"
+        firstLaunchView.valueLabel.text = rocket.first_flight
+        firstLaunchView.nameLabel.text = "First launch"
+        countryView.valueLabel.text = rocket.country
+        countryView.nameLabel.text = "Country"
+        costView.valueLabel.text = String(rocket.cost_per_launch)
+        costView.nameLabel.text =  "First launch"
         
     }
 }
-
-//        for i in 0..<3 {
-//            let view = UIView()
-//            let description = descriptionSetup(txt: "da")
-//            let value = valueSetup(txt: values[i])
-//            view.addSubview(description)
-//            view.addSubview(value)
-//            stackView.addArrangedSubview(view)
-//            NSLayoutConstraint.activate([
-//                view.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-//                view.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-//                description.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//                value.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            ])
-//        }
