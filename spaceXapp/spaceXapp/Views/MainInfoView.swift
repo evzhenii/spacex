@@ -13,7 +13,7 @@ class MainInfoView: UIView {
         super.init(frame: frame)
         setupViews()
         setupLayout()
-        setDelegates()
+//        setDelegates()
     }
     
     private lazy var mainInfoView: UIView = {
@@ -43,16 +43,14 @@ class MainInfoView: UIView {
         return button
     }()
     
-    let cardCollectionView: UICollectionView = {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-//        collectionViewLayout.minimumInteritemSpacing = 0
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        collectionViewLayout.scrollDirection = .horizontal
-        collectionView.backgroundColor = .black
-//        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
+//    let cardCollectionView: UICollectionView = {
+//        let collectionViewLayout = UICollectionViewFlowLayout()
+//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+//        collectionViewLayout.scrollDirection = .horizontal
+//        collectionView.backgroundColor = .black
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        return collectionView
+//    }()
     
     lazy var showLaunches: UIButton = {
         let button = UIButton(type: .system)
@@ -70,17 +68,17 @@ class MainInfoView: UIView {
     let stageView2 = StageView()
 //    var rocket = RocketData(from: <#Decoder#>)
     
-    private func setDelegates() {
-        cardCollectionView.delegate = self
-        cardCollectionView.dataSource = self
-    }
+//    private func setDelegates() {
+//        cardCollectionView.delegate = self
+//        cardCollectionView.dataSource = self
+//    }
     
     private func setupViews() {
         addSubview(mainInfoView)
         mainInfoView.addSubview(titleLabel)
         mainInfoView.addSubview(settingsButton)
-        cardCollectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
-        mainInfoView.addSubview(cardCollectionView)
+//        mainInfoView.addSubview(cardCollectionView)
+//        cardCollectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
         mainInfoView.addSubview(basicInfoView)
         mainInfoView.addSubview(stageView1)
         mainInfoView.addSubview(stageView2)
@@ -104,24 +102,24 @@ class MainInfoView: UIView {
             settingsButton.heightAnchor.constraint(equalToConstant: 32),
             settingsButton.widthAnchor.constraint(equalToConstant: 32),
             
-            cardCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-            cardCollectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            cardCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
-//            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
-            cardCollectionView.heightAnchor.constraint(equalToConstant: 100),
+//            cardCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
+//            cardCollectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+//            cardCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
+////            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
+//            cardCollectionView.heightAnchor.constraint(equalToConstant: 100),
             
-            basicInfoView.topAnchor.constraint(equalTo: cardCollectionView.bottomAnchor, constant: 40),
-            basicInfoView.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
+            basicInfoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+            basicInfoView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             basicInfoView.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             basicInfoView.heightAnchor.constraint(equalToConstant: 150),
             
             stageView1.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
-            stageView1.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
+            stageView1.leadingAnchor.constraint(equalTo: basicInfoView.leadingAnchor),
             stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             stageView1.heightAnchor.constraint(equalToConstant: 200),
             
             stageView2.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
-            stageView2.leadingAnchor.constraint(equalTo: cardCollectionView.leadingAnchor),
+            stageView2.leadingAnchor.constraint(equalTo: stageView1.leadingAnchor),
             stageView2.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
             stageView2.heightAnchor.constraint(equalToConstant: 200),
 
@@ -162,9 +160,6 @@ extension MainInfoView: UICollectionViewDelegate {
 //MARK: - UICollectionViewDelegateFlowLayout
 extension MainInfoView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: collectionView.frame.height * 2,
-//               height: collectionView.frame.height)
-        
         CGSize(width: collectionView.frame.height,
                height: collectionView.frame.height)
     }
