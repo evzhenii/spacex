@@ -17,7 +17,6 @@ struct RocketManager {
     var delegate: RocketManagerDelegate?
     let stringUrl = "https://api.spacexdata.com/v4/rockets"
     
-    
     func load() {
         if let url = URL(string: stringUrl) {
             let session = URLSession(configuration: .default)
