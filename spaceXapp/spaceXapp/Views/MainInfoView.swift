@@ -56,7 +56,11 @@ class MainInfoView: UIStackView {
         return button
     }()
     
-    private let emptyView = UIView()
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     @objc func showLaunchesButtonTapped(sender: UIButton!) {
       print("Button tapped")
@@ -89,15 +93,20 @@ class MainInfoView: UIStackView {
         self.layer.cornerRadius = 32
         self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         self.axis = .vertical
-        
+    
         addArrangedSubview(infoStackView)
+        infoStackView.addArrangedSubview(emptyView)
+        infoStackView.addArrangedSubview(headerView)
+        headerView.addSubview(titleLabel)
+        headerView.addSubview(settingsButton)
+        
 //        infoStackView.addArrangedSubview(headerView)
 //        headerView.addSubview(titleLabel)
 //        headerView.addSubview(settingsButton)
-//        infoStackView.addArrangedSubview(basicInfoView)
-//        infoStackView.addArrangedSubview(stageView1)
-//        infoStackView.addArrangedSubview(stageView2)
-//        infoStackView.addArrangedSubview(showLaunchesButton)
+        infoStackView.addArrangedSubview(basicInfoView)
+        infoStackView.addArrangedSubview(stageView1)
+        infoStackView.addArrangedSubview(stageView2)
+        infoStackView.addArrangedSubview(showLaunchesButton)
 //        infoStackView.addArrangedSubview(emptyView)
     }
 
@@ -107,24 +116,25 @@ class MainInfoView: UIStackView {
         NSLayoutConstraint.activate([
             
             infoStackView.topAnchor.constraint(equalTo: topAnchor),
+//            infoStackView.widthAnchor.constraint(equalTo: widthAnchor, constant: -32),
 //            infoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            infoStackView.widthAnchor.constraint(equalTo: widthAnchor),
-//
-//            headerView.topAnchor.constraint(equalTo: topAnchor, constant: 48),
-//            headerView.widthAnchor.constraint(equalTo: infoStackView.widthAnchor),
-//            headerView.heightAnchor.constraint(equalToConstant: 32),
-//
-//            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-//            settingsButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-//            settingsButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-//
-//            basicInfoView.heightAnchor.constraint(equalToConstant: 104),
-//
-//            stageView1.heightAnchor.constraint(equalToConstant: 134),
-//            stageView2.heightAnchor.constraint(equalToConstant: 134),
-//
-//            showLaunchesButton.heightAnchor.constraint(equalToConstant: 56),
-//
+//            infoStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+//            headerView.topAnchor.constraint(equalTo: emptyView.topAnchor),
+//            headerView.widthAnchor.constraint(equalTo: widthAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 32),
+
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            settingsButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+
+            basicInfoView.heightAnchor.constraint(equalToConstant: 104),
+
+            stageView1.heightAnchor.constraint(equalToConstant: 134),
+            stageView2.heightAnchor.constraint(equalToConstant: 134),
+
+            showLaunchesButton.heightAnchor.constraint(equalToConstant: 56),
+
 //            emptyView.heightAnchor.constraint(equalToConstant: 72),
 
         ])
