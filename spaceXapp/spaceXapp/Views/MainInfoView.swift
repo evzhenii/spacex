@@ -7,20 +7,21 @@
 
 import UIKit
 
-class MainInfoView: UIView {
+class MainInfoView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupStackView()
         setupViews()
         setupLayout()
-//        setDelegates()
     }
     
-    private lazy var mainInfoView: UIView = {
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 32
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -38,23 +39,16 @@ class MainInfoView: UIView {
         let button = UIButton()
         let image = UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(showLaunchesButtonTapped(sender:)), for: .touchUpInside)
         button.tintColor = #colorLiteral(red: 0.9719485641, green: 0.9719484448, blue: 0.9719484448, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-//    let cardCollectionView: UICollectionView = {
-//        let collectionViewLayout = UICollectionViewFlowLayout()
-//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-//        collectionViewLayout.scrollDirection = .horizontal
-//        collectionView.backgroundColor = .black
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        return collectionView
-//    }()
-    
-    lazy var showLaunches: UIButton = {
+    lazy var showLaunchesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show launches", for: .normal)
+        button.addTarget(self, action: #selector(showLaunchesButtonTapped), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
         button.layer.cornerRadius = 16
         button.tintColor = .white
@@ -63,104 +57,61 @@ class MainInfoView: UIView {
         return button
     }()
     
+    private let emptyView = UIView()
+    
+    @objc func showLaunchesButtonTapped(sender: UIButton!) {
+      print("Button tapped")
+    }
+    
     let basicInfoView = BasicInfoView()
     let stageView1 = StageView()
     let stageView2 = StageView()
-//    var rocket = RocketData(from: <#Decoder#>)
     
-//    private func setDelegates() {
-//        cardCollectionView.delegate = self
-//        cardCollectionView.dataSource = self
-//    }
+    private func setupStackView() {
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 32
+        self.axis = .vertical
+        self.alignment = .fill
+        self.spacing = 40
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     private func setupViews() {
-        addSubview(mainInfoView)
-        mainInfoView.addSubview(titleLabel)
-        mainInfoView.addSubview(settingsButton)
-//        mainInfoView.addSubview(cardCollectionView)
-//        cardCollectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "InfoViewCell")
-        mainInfoView.addSubview(basicInfoView)
-        mainInfoView.addSubview(stageView1)
-        mainInfoView.addSubview(stageView2)
-        mainInfoView.addSubview(showLaunches)
+        addArrangedSubview(headerView)
+        headerView.addSubview(titleLabel)
+        headerView.addSubview(settingsButton)
+        addArrangedSubview(basicInfoView)
+        addArrangedSubview(stageView1)
+        addArrangedSubview(stageView2)
+        addArrangedSubview(showLaunchesButton)
+        addArrangedSubview(emptyView)
     }
+
     private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainInfoView.topAnchor.constraint(equalTo: topAnchor),
-            mainInfoView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            mainInfoView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mainInfoView.heightAnchor.constraint(equalToConstant: 900),
+            headerView.heightAnchor.constraint(equalToConstant: 32),
+            headerView.topAnchor.constraint(equalTo: topAnchor, constant: 48),
+            headerView.widthAnchor.constraint(equalTo: widthAnchor),
+//            headerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+//            headerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             
-            titleLabel.topAnchor.constraint(equalTo: mainInfoView.topAnchor, constant: 48),
-            titleLabel.leadingAnchor.constraint(equalTo: mainInfoView.leadingAnchor, constant: 32),
-            titleLabel.heightAnchor.constraint(equalToConstant: 32),
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            settingsButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32),
             
-            settingsButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            settingsButton.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: -32),
-            settingsButton.heightAnchor.constraint(equalToConstant: 32),
-            settingsButton.widthAnchor.constraint(equalToConstant: 32),
+            basicInfoView.heightAnchor.constraint(equalToConstant: 104),
+            basicInfoView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             
-//            cardCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-//            cardCollectionView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-//            cardCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
-////            cardCollectionView.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor),
-//            cardCollectionView.heightAnchor.constraint(equalToConstant: 100),
+            stageView1.heightAnchor.constraint(equalToConstant: 134),
+            stageView2.heightAnchor.constraint(equalToConstant: 134),
             
-            basicInfoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
-            basicInfoView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            basicInfoView.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            basicInfoView.heightAnchor.constraint(equalToConstant: 150),
+            showLaunchesButton.heightAnchor.constraint(equalToConstant: 56),
             
-            stageView1.topAnchor.constraint(equalTo: basicInfoView.bottomAnchor),
-            stageView1.leadingAnchor.constraint(equalTo: basicInfoView.leadingAnchor),
-            stageView1.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            stageView1.heightAnchor.constraint(equalToConstant: 200),
-            
-            stageView2.topAnchor.constraint(equalTo: stageView1.bottomAnchor),
-            stageView2.leadingAnchor.constraint(equalTo: stageView1.leadingAnchor),
-            stageView2.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
-            stageView2.heightAnchor.constraint(equalToConstant: 200),
+            emptyView.heightAnchor.constraint(equalToConstant: 72),
 
-            showLaunches.topAnchor.constraint(equalTo: stageView2.bottomAnchor),
-            showLaunches.leadingAnchor.constraint(equalTo: stageView2.leadingAnchor),
-            showLaunches.trailingAnchor.constraint(equalTo: stageView2.trailingAnchor),
-            showLaunches.heightAnchor.constraint(equalToConstant: 60)
         ])
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
-//MARK: - UICollectionViewDataSource
-extension MainInfoView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoViewCell", for: indexPath) as? CardCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-//        cell.setup(rocket.indexPath.item)
-        return cell
-    }
-    
-}
-
-//MARK: - UICollectionViewDelegate
-extension MainInfoView: UICollectionViewDelegate {
-    
-}
-
-
-//MARK: - UICollectionViewDelegateFlowLayout
-extension MainInfoView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.height,
-               height: collectionView.frame.height)
     }
 }

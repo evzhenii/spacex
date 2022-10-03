@@ -14,12 +14,6 @@ class PageCollectionViewCell: UICollectionViewCell {
         setupLayout()
     }
     
-    private lazy var screenView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let bottomCotrolsView: UIView = {
         let view = UIView()
         let pageControl = UIPageControl()
@@ -37,8 +31,9 @@ class PageCollectionViewCell: UICollectionViewCell {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
-        scrollView.frame = self.bounds
+//        scrollView.frame = self.bounds
         scrollView.contentSize = contentSize
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
@@ -49,24 +44,15 @@ class PageCollectionViewCell: UICollectionViewCell {
         return contentView
     }()
     
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = 20
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     let infoView = MainInfoView()
     
     private var contentSize: CGSize {
-        CGSize(width: frame.width, height: frame.height + 400)
+        CGSize(width: frame.width, height: frame.height + 210)
     }
     
     let backgroundImage: UIImageView = {
         let image = UIImageView()
-//        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFill
         // MARK: TODO: Play with content mode of background image in order to fit figma design
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -81,45 +67,36 @@ class PageCollectionViewCell: UICollectionViewCell {
 extension PageCollectionViewCell {
     
     private func setupViews() {
-        addSubview(screenView)
-        screenView.addSubview(bottomCotrolsView)
-        screenView.addSubview(scrollView)
+
+        addSubview(bottomCotrolsView)
+        addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
-        scrollContentView.addSubview(stackView)
-        stackView.addSubview(backgroundImage)
-        stackView.addSubview(infoView)
+        scrollContentView.addSubview(backgroundImage)
+        scrollContentView.addSubview(infoView)
     }
     
     private func setupLayout() {
+        
         NSLayoutConstraint.activate([
-            screenView.topAnchor.constraint(equalTo: topAnchor),
-            screenView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            screenView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            screenView.widthAnchor.constraint(equalTo: widthAnchor),
-            screenView.heightAnchor.constraint(equalTo: heightAnchor),
-            
-            bottomCotrolsView.bottomAnchor.constraint(equalTo: screenView.bottomAnchor),
-            bottomCotrolsView.widthAnchor.constraint(equalTo: screenView.widthAnchor),
+            bottomCotrolsView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            bottomCotrolsView.widthAnchor.constraint(equalTo: widthAnchor),
             bottomCotrolsView.heightAnchor.constraint(equalToConstant: 72),
             
-            scrollView.topAnchor.constraint(equalTo: screenView.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: screenView.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: screenView.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
             
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            scrollContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            stackView.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
+            backgroundImage.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
+            backgroundImage.heightAnchor.constraint(equalToConstant: 400),
             
-            backgroundImage.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -100),
-            backgroundImage.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            
-            infoView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 350),
-            infoView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            infoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+            infoView.topAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -32),
+            infoView.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
+            infoView.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor)
         ])
     }
 }
