@@ -11,7 +11,6 @@ class MainInfoView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupStackView()
         setupViews()
         setupLayout()
     }
@@ -67,43 +66,72 @@ class MainInfoView: UIStackView {
     let stageView1 = StageView()
     let stageView2 = StageView()
     
-    private func setupStackView() {
-        self.backgroundColor = .black
-        self.layer.cornerRadius = 32
-        self.axis = .vertical
-        self.alignment = .fill
-        self.spacing = 40
-        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        self.translatesAutoresizingMaskIntoConstraints = false
-    }
+    private let blackBGView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 32
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var infoStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.alignment = .fill
+        view.spacing = 40
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private func setupViews() {
-        addArrangedSubview(headerView)
+        self.backgroundColor = .black
+        self.layer.cornerRadius = 32
+        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        self.axis = .vertical
+//        self.alignment = .fill
+//        self.spacing = 40
+        
+        addArrangedSubview(infoStackView)
+//        blackBGView.addSubview(infoStackView)
+        infoStackView.addArrangedSubview(headerView)
         headerView.addSubview(titleLabel)
         headerView.addSubview(settingsButton)
-        addArrangedSubview(basicInfoView)
-        addArrangedSubview(stageView1)
-        addArrangedSubview(stageView2)
-        addArrangedSubview(showLaunchesButton)
-        addArrangedSubview(emptyView)
+        infoStackView.addArrangedSubview(basicInfoView)
+        infoStackView.addArrangedSubview(stageView1)
+        infoStackView.addArrangedSubview(stageView2)
+        infoStackView.addArrangedSubview(showLaunchesButton)
+        infoStackView.addArrangedSubview(emptyView)
+        
+//        addArrangedSubview(headerView)
+//        headerView.addSubview(titleLabel)
+//        headerView.addSubview(settingsButton)
+//        addArrangedSubview(basicInfoView)
+//        addArrangedSubview(stageView1)
+//        addArrangedSubview(stageView2)
+//        addArrangedSubview(showLaunchesButton)
+//        addArrangedSubview(emptyView)
     }
 
     private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
+            infoStackView.topAnchor.constraint(equalTo: topAnchor),
+            infoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            infoStackView.widthAnchor.constraint(equalTo: widthAnchor, constant: -64),
+            
             headerView.heightAnchor.constraint(equalToConstant: 32),
             headerView.topAnchor.constraint(equalTo: topAnchor, constant: 48),
-            headerView.widthAnchor.constraint(equalTo: widthAnchor),
-//            headerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-//            headerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
+            headerView.widthAnchor.constraint(equalTo: infoStackView.widthAnchor),
             
             titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             settingsButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            settingsButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -32),
+            settingsButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             
             basicInfoView.heightAnchor.constraint(equalToConstant: 104),
-            basicInfoView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+//            basicInfoView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             
             stageView1.heightAnchor.constraint(equalToConstant: 134),
             stageView2.heightAnchor.constraint(equalToConstant: 134),
