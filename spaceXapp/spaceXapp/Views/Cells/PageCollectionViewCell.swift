@@ -30,19 +30,15 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
         scrollView.frame = self.bounds
-        scrollView.backgroundColor = .blue
-        //TODO: - dynamic scroll view content size based on childs view
-        scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 200)
+        scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 120)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
     private lazy var scrollContentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .brown
-//        contentView.frame.size = CGSize(width: frame.width, height: frame.height * 2)
+        contentView.frame = scrollView.bounds
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -83,7 +79,6 @@ class PageCollectionViewCell: UICollectionViewCell {
 extension PageCollectionViewCell {
     
     private func setupViews() {
-
         addSubview(bottomCotrolsView)
         addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
@@ -108,7 +103,7 @@ extension PageCollectionViewCell {
             
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 2),
+            scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
 
             backgroundImage.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
             backgroundImage.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
@@ -124,7 +119,6 @@ extension PageCollectionViewCell {
 
             infoView.topAnchor.constraint(equalTo: mainStackView.topAnchor),
             infoView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
-//            infoView.heightAnchor.constraint(equalToConstant: 1000)
         ])
     }
 }
@@ -134,7 +128,6 @@ extension PageCollectionViewCell {
 extension PageCollectionViewCell {
     
     func setup(_ rocket: RocketData) {
-//        self.title = rocket.name
         DispatchQueue.main.async { [weak self] in
             self?.backgroundImage.image = rocket.image
         }

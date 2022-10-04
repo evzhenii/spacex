@@ -28,19 +28,7 @@ class SwipingCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
         cell.setup(rockets[indexPath.item])
         cell.backgroundImage.image = rockets[indexPath.row].image
-        cell.infoView.showLaunchesButton.tag = indexPath.item
-        cell.infoView.settingsButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
-        cell.infoView.showLaunchesButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         return cell
-    }
-    
-    let launchesViewController = LaunchesViewController()
-    
-    @objc func buttonClicked(_ sender: UIButton) {
-        print("button works")
-        print("Show launches at: \(sender.tag)")
-        launchesViewController.modalPresentationStyle = .fullScreen
-        self.present(launchesViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -50,30 +38,6 @@ class SwipingCollectionViewController: UICollectionViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    func getAllItems() {
-        do {
-            let items = try context.fetch(RocketItem.fetchRequest())
-        }
-        catch {
-            
-        }
-    }
-    
-    func createItem(name: String) {
-        
-    }
-    
-    func deleteItem(item: RocketItem) {
-        
-    }
-    
-    func updateItem(item: RocketItem) {
-        
-    }
-    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
