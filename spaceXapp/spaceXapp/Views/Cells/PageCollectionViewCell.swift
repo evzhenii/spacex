@@ -31,7 +31,9 @@ class PageCollectionViewCell: UICollectionViewCell {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
-//        scrollView.frame = self.bounds
+        scrollView.frame = self.bounds
+        scrollView.backgroundColor = .blue
+        //TODO: - dynamic scroll view content size based on childs view
         scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 200)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
@@ -39,6 +41,8 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     private lazy var scrollContentView: UIView = {
         let contentView = UIView()
+        contentView.backgroundColor = .brown
+//        contentView.frame.size = CGSize(width: frame.width, height: frame.height * 2)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -85,18 +89,13 @@ extension PageCollectionViewCell {
         scrollView.addSubview(scrollContentView)
         scrollContentView.addSubview(backgroundImage)
         scrollContentView.addSubview(blackBGView)
-        blackBGView.addSubview(infoView)
-//        mainStackView.addArrangedSubview(backgroundImage)
-//        mainStackView.addArrangedSubview(infoView)
-        
-//        blackBGView.addSubview(infoView)
-//        scrollView.addSubview(scrollContentView)
-//        scrollContentView.addSubview(backgroundImage)
-//        scrollContentView.addSubview(blackBGView)
-//        scrollContentView.addSubview(infoView)
+        blackBGView.addSubview(mainStackView)
+        mainStackView.addArrangedSubview(infoView)
     }
     
     private func setupLayout() {
+        print(scrollView.heightAnchor)
+
         
         NSLayoutConstraint.activate([
             bottomCotrolsView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -106,19 +105,10 @@ extension PageCollectionViewCell {
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
-
             
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-//            scrollContentView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
-
-//            blackBGView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-//            blackBGView.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
-//            blackBGView.heightAnchor.constraint(equalToConstant: 920),
-//            blackBGView.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
-//            mainStackView.topAnchor.constraint(equalTo: blackBGView.topAnchor),
-//            mainStackView.widthAnchor.constraint(equalTo: blackBGView.widthAnchor),
+            scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 2),
 
             backgroundImage.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
             backgroundImage.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
@@ -126,12 +116,15 @@ extension PageCollectionViewCell {
             
             blackBGView.topAnchor.constraint(equalTo: backgroundImage.bottomAnchor, constant: -32),
             blackBGView.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
-            blackBGView.heightAnchor.constraint(equalTo: scrollContentView.heightAnchor),
+            blackBGView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, constant: 100),
+            
+            mainStackView.topAnchor.constraint(equalTo: blackBGView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: blackBGView.leadingAnchor, constant: 32),
+            mainStackView.widthAnchor.constraint(equalTo: blackBGView.widthAnchor, constant: -64),
 
-            infoView.topAnchor.constraint(equalTo: blackBGView.topAnchor),
-            infoView.leadingAnchor.constraint(equalTo: blackBGView.leadingAnchor, constant: 32),
-            infoView.trailingAnchor.constraint(equalTo: blackBGView.trailingAnchor, constant: -32),
-//            infoView.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor, constant: 32),
+            infoView.topAnchor.constraint(equalTo: mainStackView.topAnchor),
+            infoView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
+//            infoView.heightAnchor.constraint(equalToConstant: 1000)
         ])
     }
 }

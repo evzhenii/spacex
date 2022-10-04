@@ -38,7 +38,7 @@ class MainInfoView: UIStackView {
         let button = UIButton()
         let image = UIImage(systemName: "gearshape")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(showLaunchesButtonTapped(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(settingsButtonTapped(sender:)), for: .touchUpInside)
         button.tintColor = #colorLiteral(red: 0.9719485641, green: 0.9719484448, blue: 0.9719484448, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -47,8 +47,9 @@ class MainInfoView: UIStackView {
     lazy var showLaunchesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show launches", for: .normal)
-        button.addTarget(self, action: #selector(showLaunchesButtonTapped), for: .touchUpInside)
-        button.backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
+//        button.addTarget(self, action: #selector(showLaunchesButtonTapped), for: .touchUpInside)
+//        button.backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
+        button.backgroundColor = .red
         button.layer.cornerRadius = 16
         button.tintColor = .white
         button.titleLabel?.font = titleLabel.font.withSize(24)
@@ -56,28 +57,27 @@ class MainInfoView: UIStackView {
         return button
     }()
     
-    private let emptyView: UIView = {
+    private let topEmptyView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    @objc func showLaunchesButtonTapped(sender: UIButton!) {
-      print("Button tapped")
+    private let botEmptyView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+
+    
+    @objc func settingsButtonTapped(sender: UIButton!) {
+      print("Settings button tapped")
     }
     
     let basicInfoView = BasicInfoView()
     let stageView1 = StageView()
     let stageView2 = StageView()
-    
-    private let blackBGView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 32
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
     
     lazy var infoStackView: UIStackView = {
         let view = UIStackView()
@@ -89,25 +89,16 @@ class MainInfoView: UIStackView {
     }()
     
     private func setupViews() {
-        self.backgroundColor = .black
-        self.layer.cornerRadius = 32
-        self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        self.axis = .vertical
-    
         addArrangedSubview(infoStackView)
-        infoStackView.addArrangedSubview(emptyView)
+        infoStackView.addArrangedSubview(topEmptyView)
         infoStackView.addArrangedSubview(headerView)
         headerView.addSubview(titleLabel)
         headerView.addSubview(settingsButton)
-        
-//        infoStackView.addArrangedSubview(headerView)
-//        headerView.addSubview(titleLabel)
-//        headerView.addSubview(settingsButton)
         infoStackView.addArrangedSubview(basicInfoView)
         infoStackView.addArrangedSubview(stageView1)
         infoStackView.addArrangedSubview(stageView2)
         infoStackView.addArrangedSubview(showLaunchesButton)
-//        infoStackView.addArrangedSubview(emptyView)
+        infoStackView.addArrangedSubview(botEmptyView)
     }
 
     private func setupLayout() {
@@ -116,12 +107,6 @@ class MainInfoView: UIStackView {
         NSLayoutConstraint.activate([
             
             infoStackView.topAnchor.constraint(equalTo: topAnchor),
-//            infoStackView.widthAnchor.constraint(equalTo: widthAnchor, constant: -32),
-//            infoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-//            infoStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-//            headerView.topAnchor.constraint(equalTo: emptyView.topAnchor),
-//            headerView.widthAnchor.constraint(equalTo: widthAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 32),
 
             titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
@@ -134,9 +119,8 @@ class MainInfoView: UIStackView {
             stageView2.heightAnchor.constraint(equalToConstant: 134),
 
             showLaunchesButton.heightAnchor.constraint(equalToConstant: 56),
-
-//            emptyView.heightAnchor.constraint(equalToConstant: 72),
-
+            
+            botEmptyView.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 }

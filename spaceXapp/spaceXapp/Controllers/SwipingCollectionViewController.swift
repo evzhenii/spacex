@@ -22,23 +22,24 @@ class SwipingCollectionViewController: UICollectionViewController {
         collectionView.isPagingEnabled = true
         rocketManager.delegate = self
         rocketManager.load()
-//        collectionView?.reloadData()
+        //        collectionView?.reloadData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
         cell.setup(rockets[indexPath.item])
         cell.backgroundImage.image = rockets[indexPath.row].image
-//        cell.infoView.showLaunchesButton.tag = indexPath.item
-//        cell.infoView.showLaunchesButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
-//        cell.infoView.settingsButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
+        //        cell.infoView.showLaunchesButton.tag = indexPath.item
+        //        cell.infoView.showLaunchesButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        //        cell.infoView.settingsButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
+        cell.infoView.showLaunchesButton.addTarget(self, action: #selector(buttonClicked(_:)), for: .touchUpInside)
         return cell
     }
     
     @objc func buttonClicked(_ sender: UIButton) {
         print("button works")
         print("Show launches at: \(sender.tag)")
-        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
