@@ -32,14 +32,14 @@ class PageCollectionViewCell: UICollectionViewCell {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .white
 //        scrollView.frame = self.bounds
-//        scrollView.contentSize = mainStackView.bounds.size
+        scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 400)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
     private lazy var scrollContentView: UIView = {
         let contentView = UIView()
-//        contentView.frame.size = mainStackView.bounds.size
+        contentView.frame.size = CGSize(width: frame.width, height: frame.height + 400)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
@@ -113,10 +113,12 @@ extension PageCollectionViewCell {
             
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+//            scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
 //            scrollContentView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
 
             blackBGView.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
             blackBGView.leadingAnchor.constraint(equalTo: scrollContentView.leadingAnchor),
+            blackBGView.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor),
 //            blackBGView.trailingAnchor.constraint(equalTo: scrollContentView.trailingAnchor),
 //            blackBGView.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
 //            blackBGView.heightAnchor.constraint(equalToConstant: 920),
