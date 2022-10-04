@@ -51,6 +51,18 @@ class SwipingCollectionViewController: UICollectionViewController {
         return 0
     }
     
+    func getAllItems() {
+        
+    }
+    
+    func createItem(name: String) {
+        
+    }
+    
+    func deleteItem(item: RocketItem) {
+        
+    }
+    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
