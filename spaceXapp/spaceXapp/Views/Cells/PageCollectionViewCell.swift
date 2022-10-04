@@ -134,6 +134,7 @@ extension PageCollectionViewCell {
 extension PageCollectionViewCell {
     
     func setup(_ rocket: RocketData) {
+//        self.title = rocket.name
         DispatchQueue.main.async { [weak self] in
             self?.backgroundImage.image = rocket.image
         }

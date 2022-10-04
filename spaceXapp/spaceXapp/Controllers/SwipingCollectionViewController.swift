@@ -22,7 +22,6 @@ class SwipingCollectionViewController: UICollectionViewController {
         collectionView.isPagingEnabled = true
         rocketManager.delegate = self
         rocketManager.load()
-        //        collectionView?.reloadData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -36,9 +35,14 @@ class SwipingCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    let launchesViewController = LaunchesViewController()
+    
     @objc func buttonClicked(_ sender: UIButton) {
         print("button works")
         print("Show launches at: \(sender.tag)")
+//        navigationController?.pushViewController(launchesViewController, animated: true)
+        launchesViewController.modalPresentationStyle = .fullScreen
+        self.present(launchesViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -71,7 +75,6 @@ extension SwipingCollectionViewController: RocketManagerDelegate {
             self.collectionView?.reloadData()
         }
     }
-    
     
     func didFailWithError(_ error: Error) {
         print(error)
