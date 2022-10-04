@@ -51,8 +51,15 @@ class SwipingCollectionViewController: UICollectionViewController {
         return 0
     }
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     func getAllItems() {
-        
+        do {
+            let items = try context.fetch(RocketItem.fetchRequest())
+        }
+        catch {
+            
+        }
     }
     
     func createItem(name: String) {
@@ -60,6 +67,10 @@ class SwipingCollectionViewController: UICollectionViewController {
     }
     
     func deleteItem(item: RocketItem) {
+        
+    }
+    
+    func updateItem(item: RocketItem) {
         
     }
     
