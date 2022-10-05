@@ -23,17 +23,20 @@ class SwipingCollectionViewController: UICollectionViewController {
         rocketManager.delegate = self
         rocketManager.load()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
-        cell.setup(rockets[indexPath.item])
-        cell.backgroundImage.image = rockets[indexPath.row].image
-        cell.pageControl.numberOfPages = rockets.count
-        cell.pageControl.currentPage = indexPath.row
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PageCollectionViewCell {
+            DispatchQueue.main.async {
+                cell.setup(self.rockets[indexPath.item])
+                cell.pageControl.numberOfPages = self.rockets.count
+                cell.pageControl.currentPage = indexPath.row
+            }
+            print("cell created")
+            return cell
+        } else {
+            print("cannot cast cell to PageCollectionViewCell")
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -61,9 +64,8 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension SwipingCollectionViewController: RocketManagerDelegate {
     func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData]) {
         self.rockets = rockets
-        //        DispatchQueue.main.async {
-        //            self.collectionView?.reloadData()
-        //        }
+        print(rockets[0].name)
+        //        print(self.rockets)
     }
     
     func didFailWithError(_ error: Error) {

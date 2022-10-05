@@ -28,9 +28,9 @@ struct RocketManager {
                 }
                 
                 if let safeData = data {
-                    if let rockets = self.parseJSON(safeData) {
-                        let newRockets = updateImagelinks(rockets)
-                        self.delegate?.didUpdateRockets(self, rockets: newRockets)
+                    if let rockets = parseJSON(safeData) {
+                        let updated = updateImagelinks(rockets)
+                        self.delegate?.didUpdateRockets(self, rockets: updated)
                     }
                 }
             }

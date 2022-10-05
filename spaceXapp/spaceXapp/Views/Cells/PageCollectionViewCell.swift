@@ -90,7 +90,6 @@ extension PageCollectionViewCell {
     
     private func setupLayout() {
         print(scrollView.heightAnchor)
-
         
         NSLayoutConstraint.activate([
             bottomCotrolsView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -107,7 +106,7 @@ extension PageCollectionViewCell {
             scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -48),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-
+            
             backgroundImage.topAnchor.constraint(equalTo: scrollContentView.topAnchor),
             backgroundImage.widthAnchor.constraint(equalTo: scrollContentView.widthAnchor),
             backgroundImage.heightAnchor.constraint(equalToConstant: 400),
@@ -119,7 +118,7 @@ extension PageCollectionViewCell {
             mainStackView.topAnchor.constraint(equalTo: blackBGView.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: blackBGView.leadingAnchor, constant: 32),
             mainStackView.widthAnchor.constraint(equalTo: blackBGView.widthAnchor, constant: -64),
-
+            
             infoView.topAnchor.constraint(equalTo: mainStackView.topAnchor),
             infoView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
         ])
@@ -131,14 +130,16 @@ extension PageCollectionViewCell {
 extension PageCollectionViewCell {
     
     func setup(_ rocket: RocketData) {
+        print("started setting up")
         DispatchQueue.main.async { [weak self] in
             self?.backgroundImage.image = rocket.image
+            self?.infoView.titleLabel.text = rocket.name
+            self?.infoView.basicInfoView.setup(rocket)
+            self?.infoView.stageView1.setup(rocket.first_stage)
+            self?.infoView.stageView1.stageLabel.text = "FIRST STAGE"
+            self?.infoView.stageView2.setup(rocket.second_stage)
+            self?.infoView.stageView2.stageLabel.text = "SECOND STAGE"
         }
-        infoView.titleLabel.text = rocket.name
-        infoView.basicInfoView.setup(rocket)
-        infoView.stageView1.setup(rocket.first_stage)
-        infoView.stageView1.stageLabel.text = "FIRST STAGE"
-        infoView.stageView2.setup(rocket.second_stage)
-        infoView.stageView2.stageLabel.text = "SECOND STAGE"
+        print("finished setting up")
     }
 }

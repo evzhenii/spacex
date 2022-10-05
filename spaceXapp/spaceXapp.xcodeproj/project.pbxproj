@@ -20,7 +20,6 @@
 		597049C528E19C8500916586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597049C428E19C8500916586 /* SceneDelegate.swift */; };
 		597049CC28E19C8700916586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597049CB28E19C8700916586 /* Assets.xcassets */; };
 		597049CF28E19C8700916586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 597049CD28E19C8700916586 /* LaunchScreen.storyboard */; };
-		598C0FEE28EDBB2E0057140E /* spaceX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 598C0FEC28EDBB2D0057140E /* spaceX.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		597049CB28E19C8700916586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		597049CE28E19C8700916586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		597049D028E19C8700916586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		598C0FED28EDBB2D0057140E /* spaceX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = spaceX.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +124,6 @@
 				597049CB28E19C8700916586 /* Assets.xcassets */,
 				597049CD28E19C8700916586 /* LaunchScreen.storyboard */,
 				597049D028E19C8700916586 /* Info.plist */,
-				598C0FEC28EDBB2D0057140E /* spaceX.xcdatamodeld */,
 			);
 			path = spaceXapp;
 			sourceTree = "<group>";
@@ -212,7 +209,6 @@
 				597049C528E19C8500916586 /* SceneDelegate.swift in Sources */,
 				5921FEC428E42B3900043DF0 /* BasicInfoView.swift in Sources */,
 				59601C4928E87023004CB1D6 /* InfoDescriptionView.swift in Sources */,
-				598C0FEE28EDBB2E0057140E /* spaceX.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,19 +416,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		598C0FEC28EDBB2D0057140E /* spaceX.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				598C0FED28EDBB2D0057140E /* spaceX.xcdatamodel */,
-			);
-			currentVersion = 598C0FED28EDBB2D0057140E /* spaceX.xcdatamodel */;
-			path = spaceX.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 597049B728E19C8500916586 /* Project object */;
 }
