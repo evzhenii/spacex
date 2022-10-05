@@ -24,21 +24,6 @@ struct RocketData: Codable {
         }
         return image
     }
-    
-//    var imageForFirstRocket: UIImage? {
-//        let randIndex = (Int.random(in: 0..<flickr_images.count))
-//        var image: UIImage?
-//        var link = flickr_images[randIndex]
-//        let index = flickr_images[randIndex].index(flickr_images[randIndex].startIndex, offsetBy: 8)
-//        link.insert(contentsOf: "i.", at: index)
-//        guard let url = URL(string: link) else { return nil }
-//        if let data = try? Data(contentsOf: url) {
-//            if let parsed = UIImage(data: data) {
-//                image = parsed
-//            }
-//        }
-//        return image
-//    }
 
     let country: String
     let height: Height
