@@ -14,14 +14,14 @@ class PageCollectionViewCell: UICollectionViewCell {
         setupLayout()
     }
     
-    let bottomCotrolsView: UIView = {
-        let view = UIView()
+    lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 4
-        view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        return pageControl
+    }()
+    
+    lazy var bottomCotrolsView: UIView = {
+        let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.08947802335, green: 0.08947802335, blue: 0.08947802335, alpha: 1)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -31,7 +31,7 @@ class PageCollectionViewCell: UICollectionViewCell {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.frame = self.bounds
-        scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 120)
+        scrollView.contentSize = CGSize(width: frame.width, height: frame.height + 80)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -65,7 +65,6 @@ class PageCollectionViewCell: UICollectionViewCell {
     let backgroundImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        // MARK: TODO: Play with content mode of background image in order to fit figma design
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -80,6 +79,7 @@ extension PageCollectionViewCell {
     
     private func setupViews() {
         addSubview(bottomCotrolsView)
+        bottomCotrolsView.addSubview(pageControl)
         addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
         scrollContentView.addSubview(backgroundImage)
@@ -97,11 +97,14 @@ extension PageCollectionViewCell {
             bottomCotrolsView.widthAnchor.constraint(equalTo: widthAnchor),
             bottomCotrolsView.heightAnchor.constraint(equalToConstant: 72),
             
+            pageControl.centerXAnchor.constraint(equalTo: bottomCotrolsView.centerXAnchor),
+            pageControl.centerYAnchor.constraint(equalTo: bottomCotrolsView.centerYAnchor),
+            
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomCotrolsView.topAnchor),
             
-            scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -48),
             scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             scrollContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
 

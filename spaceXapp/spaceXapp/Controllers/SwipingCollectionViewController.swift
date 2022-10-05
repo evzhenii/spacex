@@ -28,6 +28,8 @@ class SwipingCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageCollectionViewCell
         cell.setup(rockets[indexPath.item])
         cell.backgroundImage.image = rockets[indexPath.row].image
+        cell.pageControl.numberOfPages = rockets.count
+        cell.pageControl.currentPage = indexPath.row
         return cell
     }
     
@@ -56,14 +58,13 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension SwipingCollectionViewController: RocketManagerDelegate {
     func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData]) {
         self.rockets = rockets
-        DispatchQueue.main.async {
-            self.collectionView?.reloadData()
-        }
+        //        DispatchQueue.main.async {
+        //            self.collectionView?.reloadData()
+        //        }
     }
     
     func didFailWithError(_ error: Error) {
         print(error)
     }
-    
 }
 

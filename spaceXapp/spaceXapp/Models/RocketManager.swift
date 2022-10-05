@@ -28,8 +28,9 @@ struct RocketManager {
                 }
                 
                 if let safeData = data {
-                    if let rocket = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateRockets(self, rockets: rocket)
+                    if let rockets = self.parseJSON(safeData) {
+                        let newRockets = updateImagelinks(rockets)
+                        self.delegate?.didUpdateRockets(self, rockets: newRockets)
                     }
                 }
             }
@@ -47,5 +48,15 @@ struct RocketManager {
             return nil
         }
     }
+    
+    private func updateImagelinks(_ rockets: [RocketData]) -> [RocketData] {
+        var newRockets = rockets
+        var images: [String] = newRockets[0].flickr_images
+        for i in 0..<images.count {
+            let index = images[i].index(images[i].startIndex, offsetBy: 8)
+            images[i].insert(contentsOf: "i.", at: index)
+        }
+        newRockets[0].flickr_images = images
+        return newRockets
+    }
 }
-
