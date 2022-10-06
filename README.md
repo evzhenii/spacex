@@ -6,7 +6,7 @@ This app shows information about SpaceX rockets and also about their past and cu
 The project contains two screens
 
 | Spinner | Rockets |
-:---:|:---:|
+:---:|:---:
 ![Spinner](![spaceX spinner](https://user-images.githubusercontent.com/95398172/194371663-9813f069-192b-4a8b-abc2-c0f1d494e0a6.gif) | ![Rockets](![spaceX rockets](https://user-images.githubusercontent.com/95398172/194373534-8eb29648-5a74-4ddb-b23c-a267cb310b01.gif)
 
 
