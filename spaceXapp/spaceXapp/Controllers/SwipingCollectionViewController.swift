@@ -12,8 +12,8 @@ private let reuseIdentifier = "Cell"
 class SwipingCollectionViewController: UICollectionViewController {
     
     var rocketManager = RocketManager()
-    
-    var rockets = [RocketData]()
+    var rockets: [RocketData] = []
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,8 @@ class SwipingCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PageCollectionViewCell {
             DispatchQueue.main.async {
-                cell.setup(self.rockets[indexPath.item])
+//                print("self.images.count = \(self.images.count)")
+                cell.setup(self.rockets[indexPath.item], self.images[indexPath.item])
                 cell.pageControl.numberOfPages = self.rockets.count
                 cell.pageControl.currentPage = indexPath.row
             }
@@ -64,7 +65,9 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension SwipingCollectionViewController: RocketManagerDelegate {
     func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData]) {
         self.rockets = rockets
-        print(rockets[0].name)
+        self.images = rocketManager.imagesToArray(rockets)
+        print("didupdate: \(self.images.count)")
+//        print(rockets[0].name)
         //        print(self.rockets)
     }
     

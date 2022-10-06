@@ -38,6 +38,17 @@ struct RocketManager {
         }
     }
     
+    func imagesToArray(_ rockets: [RocketData]) -> [UIImage] {
+        var array: [UIImage] = []
+        print(rockets.count)
+        for i in 0..<rockets.count {
+            if let image = rockets[i].image {
+                array.append(image)
+            }
+        }
+        return array
+    }
+    
     private func parseJSON(_ rocketData: Data) -> [RocketData]? {
         let decoder = JSONDecoder()
         do {

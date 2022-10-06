@@ -129,10 +129,11 @@ extension PageCollectionViewCell {
 //MARK: - Update UI functions
 extension PageCollectionViewCell {
     
-    func setup(_ rocket: RocketData) {
+    func setup(_ rocket: RocketData, _ image: UIImage) {
         print("started setting up")
         DispatchQueue.main.async { [weak self] in
-            self?.backgroundImage.image = rocket.image
+            print(image)
+            self?.backgroundImage.image = image
             self?.infoView.titleLabel.text = rocket.name
             self?.infoView.basicInfoView.setup(rocket)
             self?.infoView.stageView1.setup(rocket.first_stage)
