@@ -11,7 +11,6 @@ private let reuseIdentifier = "Cell"
 
 class SwipingCollectionViewController: UICollectionViewController {
     
-    var rocketManager = RocketManager()
     var rockets: [RocketData] = []
     var images: [UIImage] = []
     
@@ -20,22 +19,17 @@ class SwipingCollectionViewController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .never
         self.collectionView!.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.isPagingEnabled = true
-        rocketManager.delegate = self
-        rocketManager.load()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PageCollectionViewCell {
             DispatchQueue.main.async {
-//                print("self.images.count = \(self.images.count)")
                 cell.setup(self.rockets[indexPath.item], self.images[indexPath.item])
                 cell.pageControl.numberOfPages = self.rockets.count
                 cell.pageControl.currentPage = indexPath.row
             }
-            print("cell created")
             return cell
         } else {
-            print("cannot cast cell to PageCollectionViewCell")
             return UICollectionViewCell()
         }
     }
@@ -58,21 +52,6 @@ extension SwipingCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return rockets.count
-    }
-}
-
-//MARK: - RocketManagerDelegate
-extension SwipingCollectionViewController: RocketManagerDelegate {
-    func didUpdateRockets(_ rocketManager: RocketManager, rockets: [RocketData]) {
-        self.rockets = rockets
-        self.images = rocketManager.imagesToArray(rockets)
-        print("didupdate: \(self.images.count)")
-//        print(rockets[0].name)
-        //        print(self.rockets)
-    }
-    
-    func didFailWithError(_ error: Error) {
-        print(error)
     }
 }
 

@@ -38,12 +38,17 @@ struct RocketManager {
         }
     }
     
-    func imagesToArray(_ rockets: [RocketData]) -> [UIImage] {
+    func imagesToArray(_ rockets: [RocketData]) -> [UIImage]? {
         var array: [UIImage] = []
-        print(rockets.count)
+        
         for i in 0..<rockets.count {
-            if let image = rockets[i].image {
-                array.append(image)
+            let currentImageURLArray = rockets[i].flickr_images
+            let randIndex = (Int.random(in: 0..<currentImageURLArray.count))
+            guard let url = URL(string: currentImageURLArray[randIndex]) else { return nil }
+            if let data = try? Data(contentsOf: url) {
+                if let parsed = UIImage(data: data) {
+                    array.append(parsed)
+                }
             }
         }
         return array

@@ -64,10 +64,6 @@ class StageView: UIView {
         }
     }
     
-    func combustionViewActivate() -> UIView? {
-        return InfoDescriptionView()
-    }
-    
     func setup(_ rocket: Stage) {
         engineNumberView.nameLabel.text = "Number of engines"
         fuelCapacityView.nameLabel.text = "Fuel capacity"

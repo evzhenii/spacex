@@ -12,19 +12,6 @@ struct RocketData: Codable {
     let name: String
     let cost_per_launch: Int
     let first_flight: String
-    
-    var image: UIImage? {
-        let randIndex = (Int.random(in: 0..<flickr_images.count))
-        var image: UIImage?
-        guard let url = URL(string: flickr_images[randIndex]) else { return nil }
-        if let data = try? Data(contentsOf: url) {
-            if let parsed = UIImage(data: data) {
-                image = parsed
-            }
-        }
-        return image
-    }
-
     let country: String
     let height: Height
     let diameter: Diameter

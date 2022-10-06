@@ -57,7 +57,7 @@ extension BasicInfoView {
             ])
         }
     }
-
+    
     func setup(_ rocket: RocketData) {
         firstLaunchView.valueLabel.text = rocket.first_flight
         firstLaunchView.nameLabel.text = "First launch"

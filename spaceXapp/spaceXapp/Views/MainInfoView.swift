@@ -30,7 +30,7 @@ class MainInfoView: UIStackView {
         return view
     }()
     
-    var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.9719485641, green: 0.9719484448, blue: 0.9719484448, alpha: 1)
         label.font = label.font.withSize(24)
@@ -64,18 +64,18 @@ class MainInfoView: UIStackView {
         infoStackView.addArrangedSubview(stageView2)
         infoStackView.addArrangedSubview(botEmptyView)
     }
-
+    
     private func setupLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             infoStackView.topAnchor.constraint(equalTo: topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 32),
-
+            
             titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-
+            
             basicInfoView.heightAnchor.constraint(equalToConstant: 104),
-
+            
             stageView1.heightAnchor.constraint(equalToConstant: 134),
             stageView2.heightAnchor.constraint(equalToConstant: 134),
             

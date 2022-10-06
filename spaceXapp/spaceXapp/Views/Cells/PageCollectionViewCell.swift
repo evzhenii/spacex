@@ -89,7 +89,6 @@ extension PageCollectionViewCell {
     }
     
     private func setupLayout() {
-        print(scrollView.heightAnchor)
         
         NSLayoutConstraint.activate([
             bottomCotrolsView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -130,9 +129,7 @@ extension PageCollectionViewCell {
 extension PageCollectionViewCell {
     
     func setup(_ rocket: RocketData, _ image: UIImage) {
-        print("started setting up")
         DispatchQueue.main.async { [weak self] in
-            print(image)
             self?.backgroundImage.image = image
             self?.infoView.titleLabel.text = rocket.name
             self?.infoView.basicInfoView.setup(rocket)
@@ -141,6 +138,5 @@ extension PageCollectionViewCell {
             self?.infoView.stageView2.setup(rocket.second_stage)
             self?.infoView.stageView2.stageLabel.text = "SECOND STAGE"
         }
-        print("finished setting up")
     }
 }

@@ -20,6 +20,8 @@
 		597049C528E19C8500916586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597049C428E19C8500916586 /* SceneDelegate.swift */; };
 		597049CC28E19C8700916586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597049CB28E19C8700916586 /* Assets.xcassets */; };
 		597049CF28E19C8700916586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 597049CD28E19C8700916586 /* LaunchScreen.storyboard */; };
+		598C101328EEF1A30057140E /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C101228EEF1A30057140E /* SpinnerViewController.swift */; };
+		598C101528EEF2720057140E /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C101428EEF2720057140E /* SpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		597049CB28E19C8700916586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		597049CE28E19C8700916586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		597049D028E19C8700916586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		598C101228EEF1A30057140E /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		598C101428EEF2720057140E /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				5900F43528E1E72900F6DB59 /* SwipingCollectionViewController.swift */,
+				598C101228EEF1A30057140E /* SpinnerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -70,6 +75,7 @@
 		5921FEC928E45CA900043DF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				598C101428EEF2720057140E /* SpinnerView.swift */,
 				5900F43928E370CC00F6DB59 /* MainInfoView.swift */,
 				5921FEC328E42B3900043DF0 /* BasicInfoView.swift */,
 				5921FECA28E4702100043DF0 /* StageView.swift */,
@@ -199,9 +205,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5900F43A28E370CC00F6DB59 /* MainInfoView.swift in Sources */,
+				598C101528EEF2720057140E /* SpinnerView.swift in Sources */,
 				5900F43828E1EBBE00F6DB59 /* PageCollectionViewCell.swift in Sources */,
 				5921FED028E4CD2F00043DF0 /* RocketData.swift in Sources */,
 				597049C328E19C8500916586 /* AppDelegate.swift in Sources */,
+				598C101328EEF1A30057140E /* SpinnerViewController.swift in Sources */,
 				5921FECB28E4702100043DF0 /* StageView.swift in Sources */,
 				59601C4B28E8AE33004CB1D6 /* StageDescriptionView.swift in Sources */,
 				5921FECD28E4B64C00043DF0 /* RocketManager.swift in Sources */,
