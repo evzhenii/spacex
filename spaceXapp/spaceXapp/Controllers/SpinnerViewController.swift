@@ -27,7 +27,6 @@ class SpinnerViewController: UIViewController {
         spinnerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         spinnerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-
 }
 
 //MARK: - RocketManagerDelegate
