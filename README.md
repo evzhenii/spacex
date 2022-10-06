@@ -7,7 +7,7 @@ The project contains two screens
 
 | Spinner | Rockets |
 :---:|:---:
-![Spinner](![spinner demo](https://user-images.githubusercontent.com/95398172/194374613-cea178da-7519-488d-ab68-604942eed332.gif)) | ![Rockets](![rockets demo](https://user-images.githubusercontent.com/95398172/194374661-7280f9d9-1aac-4562-a814-1cc96ded097b.gif))
+(!(https://user-images.githubusercontent.com/95398172/194374613-cea178da-7519-488d-ab68-604942eed332.gif)) | (![rockets demo](https://user-images.githubusercontent.com/95398172/194374661-7280f9d9-1aac-4562-a814-1cc96ded097b.gif))
 
 
 ## Technology stack
