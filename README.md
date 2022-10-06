@@ -1,13 +1,11 @@
-https://user-images.githubusercontent.com/95398172/194368769-2d9f4617-e769-4df5-806a-2a573472306d.mp4
-
-This app shows information about SpaceX rockets and also about their past and current launches.
+This app shows information about SpaceX rockets.
 
 ## Preview
 The project contains two screens
 
-| Spinner | Rockets |
-:---:|:---:
-![spinner](https://user-images.githubusercontent.com/95398172/194374613-cea178da-7519-488d-ab68-604942eed332.gif) | ![rockets](https://user-images.githubusercontent.com/95398172/194374661-7280f9d9-1aac-4562-a814-1cc96ded097b.gif)
+| Together | Rockets | Spinner |
+:---:|:---:|:---:
+![spaceX](https://user-images.githubusercontent.com/95398172/194376483-b12fcc45-f7ac-408d-a5a0-22af75e96e81.gif) | ![rockets](https://user-images.githubusercontent.com/95398172/194374661-7280f9d9-1aac-4562-a814-1cc96ded097b.gif) | ![spinner](https://user-images.githubusercontent.com/95398172/194375797-bff016e1-0430-44dd-8f39-f4f7ac2f9c83.gif)
 
 
 ## Technology stack
@@ -25,7 +23,7 @@ The project contains two screens
 * Text formatting
 
 ## Backlog
-* Add screen with launches of each rocket
+* (IN PROGRESS) -> Add screen with launches of each rocket
 * Add settings screen with measurement type changes
 * Add data saving with UserDefaults/Core Data
 * Add tests
